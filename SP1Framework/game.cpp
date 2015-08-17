@@ -103,7 +103,7 @@ void render()
 	{
 		gotoXY(3*i,i+1);
 		colour(colors[i]);
-		std::cout << "WOW";
+		std::cout << "LOL";
 	}
 
     // render time taken to calculate this frame
@@ -118,7 +118,7 @@ void render()
     // render character
     gotoXY(charLocation);
     colour(0x0C);
-    std::cout << (char)1;
+    std::cout << (char)50;
 
     
 }
