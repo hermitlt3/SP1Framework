@@ -9,6 +9,7 @@
 double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
+COORD enemyLocation;
 COORD charLocation;
 COORD consoleSize;
 
@@ -33,6 +34,9 @@ void init()
     // set the character to be in the center of the screen.
     charLocation.X = 0;
     charLocation.Y = 1;
+	
+	enemyLocation.X = 2;
+	enemyLocation.Y = 3;
 
     elapsedTime = 0.0;
 }
@@ -59,7 +63,7 @@ void update(double dt)
     deltaTime = dt;
 
     // Updating the location of the character based on the key press
-    if (keyPressed[K_UP] && charLocation.Y > 0)
+    if (keyPressed[K_UP]  && charLocation.Y > 0)
     {
         Beep(1440, 30);
         charLocation.Y--; 
@@ -94,7 +98,7 @@ void render()
     //render the game
 
     //render test screen code (not efficient at all)
-  /*  const WORD colors[] =   {
+    const WORD colors[] =   {
 	                        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
 	                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 	                        };
@@ -104,7 +108,7 @@ void render()
 		gotoXY(3*i,i+1);
 		colour(colors[i]);
 		std::cout << "LOL";
-	*/
+	}
 
     // render time taken to calculate this frame
     gotoXY(70, 0);
@@ -120,5 +124,7 @@ void render()
     colour(0x0C);
     std::cout << (char)1;
 
-    
+	gotoXY(enemyLocation);
+	colour(0x0C);
+	std::cout<<(char)1;
 }
