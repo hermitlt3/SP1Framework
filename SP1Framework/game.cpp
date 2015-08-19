@@ -74,9 +74,16 @@ void mapReadlevelone()
 
 
 // Game specific variables here
+<<<<<<< HEAD
 COORD   g_cCharLocation;
 COORD g_cEnemyLocation;
 COORD   g_cWalls;
+=======
+SGameChar   g_sChar;
+EGAMESTATES g_eGameState = S_SPLASHSCREEN;
+double  g_dBounceTime; // this is to prevent key bouncing, so we won't trigger keypresses more than once
+
+>>>>>>> upstream/master
 // Console object
 Console g_Console(100, 40, "SP1 Framework");
 
@@ -91,9 +98,19 @@ void init(void)
 {
     // Set precision for floating point output
     g_dElapsedTime = 0.0;
+    g_dBounceTime = 0.0;
 
+    // sets the initial state for the game
+    g_eGameState = S_SPLASHSCREEN;
+
+<<<<<<< HEAD
     g_cCharLocation.X = 3;
     g_cCharLocation.Y = 4;
+=======
+    g_sChar.m_cLocation.X = g_Console.getConsoleSize().X / 2;
+    g_sChar.m_cLocation.Y = g_Console.getConsoleSize().Y / 2;
+    g_sChar.m_bActive = true;
+>>>>>>> upstream/master
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 16, L"Consolas");
 	//enemy one
@@ -162,6 +179,7 @@ void getInput(void)
     g_abKeyPressed[K_DOWN]   = isKeyPressed(VK_DOWN);
     g_abKeyPressed[K_LEFT]   = isKeyPressed(VK_LEFT);
     g_abKeyPressed[K_RIGHT]  = isKeyPressed(VK_RIGHT);
+    g_abKeyPressed[K_SPACE]  = isKeyPressed(VK_SPACE);
     g_abKeyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
 }
 
@@ -185,9 +203,13 @@ void update(double dt)
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;
 
-    processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
-    moveCharacter();    // moves the character, collision detection, physics, etc
-    // sound can be played here too.
+    switch (g_eGameState)
+    {
+        case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
+            break;
+        case S_GAME: gameplay(); // gameplay logic when we are in the game
+            break;
+    }
 }
 //--------------------------------------------------------------
 // Purpose  : Render function is to update the console screen
@@ -201,46 +223,102 @@ void render()
 {
 
     clearScreen();      // clears the current screen and draw from scratch 
-    renderMap();        // renders the map to the buffer first
-    renderCharacter();  // renders the character into the buffer
+    switch (g_eGameState)
+    {
+        case S_SPLASHSCREEN: renderSplashScreen();
+            break;
+        case S_GAME: renderGame();
+            break;
+    }
     renderFramerate();  // renders debug information, frame rate, elapsed time, etc
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
 }
 
+void splashScreenWait()    // waits for time to pass in splash screen
+{
+    if (g_dElapsedTime > 3.0) // wait for 3 seconds to switch to game mode, else do nothing
+        g_eGameState = S_GAME;
+}
+
+void gameplay()            // gameplay logic
+{
+    processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
+    moveCharacter();    // moves the character, collision detection, physics, etc
+                        // sound can be played here too.
+}
+
 void moveCharacter()
 {
+    bool bSomethingHappened = false;
+    if (g_dBounceTime > g_dElapsedTime)
+        return;
+
     // Updating the location of the character based on the key press
     // providing a beep sound whenver we shift the character
+<<<<<<< HEAD
     if (g_abKeyPressed[K_UP] && g_cCharLocation.Y > 0)
 	{
 		 //Beep(1440, 30);
 		checkCollisionUp();
 		 if(g_Collision == false)
 		    g_cCharLocation.Y--;
-    }
-    if (g_abKeyPressed[K_LEFT] && g_cCharLocation.X > 0)
+=======
+    if (g_abKeyPressed[K_UP] && g_sChar.m_cLocation.Y > 0)
     {
         //Beep(1440, 30);
+        g_sChar.m_cLocation.Y--;
+        bSomethingHappened = true;
+>>>>>>> upstream/master
+    }
+    if (g_abKeyPressed[K_LEFT] && g_sChar.m_cLocation.X > 0)
+    {
+        //Beep(1440, 30);
+<<<<<<< HEAD
 		checkCollisionLeft();
 		 if(g_Collision == false)
 		     g_cCharLocation.X--; 
        
+=======
+        g_sChar.m_cLocation.X--;
+        bSomethingHappened = true;
+>>>>>>> upstream/master
     }
-    if (g_abKeyPressed[K_DOWN] && g_cCharLocation.Y < g_Console.getConsoleSize().Y - 1)
+    if (g_abKeyPressed[K_DOWN] && g_sChar.m_cLocation.Y < g_Console.getConsoleSize().Y - 1)
     {
         //Beep(1440, 30);
+<<<<<<< HEAD
 		checkCollisionDown();
 		 if(g_Collision == false)
 		    g_cCharLocation.Y++; 
         
+=======
+        g_sChar.m_cLocation.Y++;
+        bSomethingHappened = true;
+>>>>>>> upstream/master
     }
-    if (g_abKeyPressed[K_RIGHT] && g_cCharLocation.X < g_Console.getConsoleSize().X - 1)
+    if (g_abKeyPressed[K_RIGHT] && g_sChar.m_cLocation.X < g_Console.getConsoleSize().X - 1)
     {
         //Beep(1440, 30);
+<<<<<<< HEAD
 		checkCollisionRight();
 		 if(g_Collision == false)
 		    g_cCharLocation.X++;
         
+=======
+        g_sChar.m_cLocation.X++;
+        bSomethingHappened = true;
+    }
+    if (g_abKeyPressed[K_SPACE])
+    {
+        g_sChar.m_bActive = !g_sChar.m_bActive;
+        bSomethingHappened = true;
+    }
+
+    if (bSomethingHappened)
+    {
+        // set the bounce time to some time in the future to prevent accidental triggers
+        g_dBounceTime = g_dElapsedTime + 0.125; // 125ms should be enough
+>>>>>>> upstream/master
     }
 	if(
 }
@@ -256,6 +334,27 @@ void clearScreen()
     // Clears the buffer with this colour attribute
     g_Console.clearBuffer(0x1F);
 }
+
+void renderSplashScreen()  // renders the splash screen
+{
+    COORD c = g_Console.getConsoleSize();
+    c.Y /= 3;
+    c.X = c.X / 2 - 9;
+    g_Console.writeToBuffer(c, "A game in 3 seconds", 0x03);
+    c.Y += 1;
+    c.X = g_Console.getConsoleSize().X / 2 - 20;
+    g_Console.writeToBuffer(c, "Press <Space> to change character colour", 0x09);
+    c.Y += 1;
+    c.X = g_Console.getConsoleSize().X / 2 - 9;
+    g_Console.writeToBuffer(c, "Press 'Esc' to quit", 0x09);
+}
+
+void renderGame()
+{
+    renderMap();        // renders the map to the buffer first
+    renderCharacter();  // renders the character into the buffer
+}
+
 void renderMap()
 {
     mapReadlevelone();
@@ -289,8 +388,17 @@ void renderMap()
 void renderCharacter()
 {
     // Draw the location of the character
+<<<<<<< HEAD
     g_Console.writeToBuffer(g_cCharLocation, (char)1, 0x0C);
 	g_Console.writeToBuffer(g_cEnemyLocation, (char)1, 0x0D);
+=======
+    WORD charColor = 0x0C;
+    if (g_sChar.m_bActive)
+    {
+        charColor = 0x0A;
+    }
+    g_Console.writeToBuffer(g_sChar.m_cLocation, (char)1, charColor);
+>>>>>>> upstream/master
 }
 
 void renderFramerate()
