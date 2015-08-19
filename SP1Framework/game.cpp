@@ -4,7 +4,6 @@
 #include "game.h"
 #include "Framework\console.h"
 #include "main_menu.h"
-#include "enemy.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -74,16 +73,16 @@ void mapReadlevelone()
 
 
 // Game specific variables here
-<<<<<<< HEAD
+
 COORD   g_cCharLocation;
 COORD g_cEnemyLocation;
 COORD   g_cWalls;
-=======
+
 SGameChar   g_sChar;
 EGAMESTATES g_eGameState = S_SPLASHSCREEN;
 double  g_dBounceTime; // this is to prevent key bouncing, so we won't trigger keypresses more than once
 
->>>>>>> upstream/master
+
 // Console object
 Console g_Console(100, 40, "SP1 Framework");
 
@@ -103,14 +102,11 @@ void init(void)
     // sets the initial state for the game
     g_eGameState = S_SPLASHSCREEN;
 
-<<<<<<< HEAD
-    g_cCharLocation.X = 3;
-    g_cCharLocation.Y = 4;
-=======
-    g_sChar.m_cLocation.X = g_Console.getConsoleSize().X / 2;
-    g_sChar.m_cLocation.Y = g_Console.getConsoleSize().Y / 2;
+
+    g_sChar.m_cLocation.X = 3;
+    g_sChar.m_cLocation.Y = 4;
     g_sChar.m_bActive = true;
->>>>>>> upstream/master
+
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 16, L"Consolas");
 	//enemy one
@@ -119,28 +115,28 @@ void init(void)
 }
 void checkCollisionUp()
 {
-	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y-1][g_cCharLocation.X] == (char)219 )
+	if(MAZE_LEVEL_ZERO[g_sChar.m_cLocation.Y-1][g_sChar.m_cLocation.X] == (char)219 )
 		g_Collision = true;
 	else
 		g_Collision = false;
 }
 void checkCollisionDown()
 {
-	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y+1][g_cCharLocation.X] == (char)219)
+	if(MAZE_LEVEL_ZERO[g_sChar.m_cLocation.Y+1][g_sChar.m_cLocation.X] == (char)219)
 		g_Collision = true;
 	else
 		g_Collision = false;
 }
 void checkCollisionLeft()
 {
-	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y][g_cCharLocation.X-1] == (char)219)
+	if(MAZE_LEVEL_ZERO[g_sChar.m_cLocation.Y][g_sChar.m_cLocation.X-1] == (char)219)
 		g_Collision = true;
 	else
 		g_Collision = false;
 }
 void checkCollisionRight()
 {
-	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y][g_cCharLocation.X+1] == (char)219)
+	if(MAZE_LEVEL_ZERO[g_sChar.m_cLocation.Y][g_sChar.m_cLocation.X+1] == (char)219)
 		g_Collision = true;
 	else
 		g_Collision = false;
@@ -236,7 +232,7 @@ void render()
 
 void splashScreenWait()    // waits for time to pass in splash screen
 {
-    if (g_dElapsedTime > 3.0) // wait for 3 seconds to switch to game mode, else do nothing
+    if (g_dElapsedTime > 0.0) // wait for 3 seconds to switch to game mode, else do nothing
         g_eGameState = S_GAME;
 }
 
@@ -255,58 +251,38 @@ void moveCharacter()
 
     // Updating the location of the character based on the key press
     // providing a beep sound whenver we shift the character
-<<<<<<< HEAD
-    if (g_abKeyPressed[K_UP] && g_cCharLocation.Y > 0)
+
+    if (g_abKeyPressed[K_UP] && g_sChar.m_cLocation.Y > 0)
 	{
 		 //Beep(1440, 30);
+		bSomethingHappened = true;
 		checkCollisionUp();
 		 if(g_Collision == false)
-		    g_cCharLocation.Y--;
-=======
-    if (g_abKeyPressed[K_UP] && g_sChar.m_cLocation.Y > 0)
-    {
-        //Beep(1440, 30);
-        g_sChar.m_cLocation.Y--;
-        bSomethingHappened = true;
->>>>>>> upstream/master
+		    g_sChar.m_cLocation.Y--;
     }
     if (g_abKeyPressed[K_LEFT] && g_sChar.m_cLocation.X > 0)
     {
         //Beep(1440, 30);
-<<<<<<< HEAD
+		bSomethingHappened = true;
 		checkCollisionLeft();
 		 if(g_Collision == false)
-		     g_cCharLocation.X--; 
-       
-=======
-        g_sChar.m_cLocation.X--;
-        bSomethingHappened = true;
->>>>>>> upstream/master
+		     g_sChar.m_cLocation.X--; 
     }
     if (g_abKeyPressed[K_DOWN] && g_sChar.m_cLocation.Y < g_Console.getConsoleSize().Y - 1)
     {
         //Beep(1440, 30);
-<<<<<<< HEAD
-		checkCollisionDown();
+		bSomethingHappened = true;
+		checkCollisionDown();;
 		 if(g_Collision == false)
-		    g_cCharLocation.Y++; 
-        
-=======
-        g_sChar.m_cLocation.Y++;
-        bSomethingHappened = true;
->>>>>>> upstream/master
+		    g_sChar.m_cLocation.Y++; 
     }
     if (g_abKeyPressed[K_RIGHT] && g_sChar.m_cLocation.X < g_Console.getConsoleSize().X - 1)
     {
         //Beep(1440, 30);
-<<<<<<< HEAD
+		bSomethingHappened = true;
 		checkCollisionRight();
 		 if(g_Collision == false)
-		    g_cCharLocation.X++;
-        
-=======
-        g_sChar.m_cLocation.X++;
-        bSomethingHappened = true;
+		    g_sChar.m_cLocation.X++;
     }
     if (g_abKeyPressed[K_SPACE])
     {
@@ -318,10 +294,9 @@ void moveCharacter()
     {
         // set the bounce time to some time in the future to prevent accidental triggers
         g_dBounceTime = g_dElapsedTime + 0.125; // 125ms should be enough
->>>>>>> upstream/master
     }
-	if(
 }
+
 void processUserInput()
 {
     // quits the game if player hits the escape key
@@ -388,17 +363,16 @@ void renderMap()
 void renderCharacter()
 {
     // Draw the location of the character
-<<<<<<< HEAD
-    g_Console.writeToBuffer(g_cCharLocation, (char)1, 0x0C);
+
 	g_Console.writeToBuffer(g_cEnemyLocation, (char)1, 0x0D);
-=======
+
     WORD charColor = 0x0C;
     if (g_sChar.m_bActive)
     {
         charColor = 0x0A;
     }
-    g_Console.writeToBuffer(g_sChar.m_cLocation, (char)1, charColor);
->>>>>>> upstream/master
+    g_Console.writeToBuffer(g_sChar.m_cLocation, 'O', charColor);
+
 }
 
 void renderFramerate()

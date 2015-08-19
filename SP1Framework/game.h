@@ -18,8 +18,6 @@ enum EKEYS
     K_COUNT
 };
 
-<<<<<<< HEAD
-=======
 // Enumeration for the different screen states
 enum EGAMESTATES
 {
@@ -40,8 +38,6 @@ void getInput    ( void );      // get input from player
 void update      ( double dt ); // update the game and the state of the game
 void render      ( void );      // renders the current state of the game to the console
 void shutdown    ( void );      // do clean up, free memory
->>>>>>> upstream/master
-
 void splashScreenWait();    // waits for time to pass in splash screen
 void gameplay();            // gameplay logic
 void moveCharacter();       // moves the character, collision detection, physics, etc
