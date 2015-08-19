@@ -4,6 +4,7 @@
 #include "game.h"
 #include "Framework\console.h"
 #include "main_menu.h"
+#include "enemy.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
@@ -16,12 +17,14 @@ using std::ifstream;
 double  g_dElapsedTime;
 double  g_dDeltaTime;
 bool g_Collision;
-bool    g_abKeyPressed[K_COUNT];
-char MAZE_LEVEL_ZERO[7][60];
+bool g_abKeyPressed[K_COUNT];
+int MapHeight;
+int MapWidth;
+char MAZE_LEVEL_ZERO[20][79]; 
 void mapReadlevelzero()
 {
-int MapHeight = 7;
-int MapWidth = 60;
+ MapHeight = 7;
+ MapWidth = 60;
  string maze;
  ifstream catridge;
  catridge.open("level0.txt");
@@ -32,9 +35,11 @@ int MapWidth = 60;
 	  {
 		  switch(maze[a])
 		  {
-		  case'#': MAZE_LEVEL_ZERO[i][j] = 'A';
+		  case'#': MAZE_LEVEL_ZERO[i][j] =  219;
 			  break;
 		  case' ': MAZE_LEVEL_ZERO[i][j] = ' ';
+			  break;
+		  case'E': MAZE_LEVEL_ZERO[i][j] = 'E';
 			  break;
 		  }
 		}
@@ -42,8 +47,8 @@ int MapWidth = 60;
 }
 void mapReadlevelone()
 {
-int MapHeight = 7;
-int MapWidth = 60;
+ MapHeight = 7;
+ MapWidth = 60;
  string maze;
  ifstream catridge;
  catridge.open("level1.txt");
@@ -54,11 +59,14 @@ int MapWidth = 60;
 	  {
 		  switch(maze[a])
 		  {
-		  case'#': MAZE_LEVEL_ZERO[i][j] = 'A';
+		  case'#': MAZE_LEVEL_ZERO[i][j] = 219;
 			  break;
 		  case' ': MAZE_LEVEL_ZERO[i][j] = ' ';
 			  break;
 		  case'N': MAZE_LEVEL_ZERO[i][j] = 'N';
+			  break;
+			  case'E': MAZE_LEVEL_ZERO[i][j] = 'E';
+			  break;
 		  }
 		}
 	}
@@ -67,6 +75,7 @@ int MapWidth = 60;
 
 // Game specific variables here
 COORD   g_cCharLocation;
+COORD g_cEnemyLocation;
 COORD   g_cWalls;
 // Console object
 Console g_Console(100, 40, "SP1 Framework");
@@ -87,34 +96,34 @@ void init(void)
     g_cCharLocation.Y = 4;
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 16, L"Consolas");
-	//Level 0
-	g_cWalls.X = 1; 
-	g_cWalls.Y = 5;
+	//enemy one
+	g_cEnemyLocation.X = 6;
+	g_cEnemyLocation.Y = 9;
 }
 void checkCollisionUp()
 {
-	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y-1][g_cCharLocation.X+1] == 'A')
+	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y-1][g_cCharLocation.X] == (char)219 )
 		g_Collision = true;
 	else
 		g_Collision = false;
 }
 void checkCollisionDown()
 {
-	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y+1][g_cCharLocation.X+1] == 'A')
+	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y+1][g_cCharLocation.X] == (char)219)
 		g_Collision = true;
 	else
 		g_Collision = false;
 }
 void checkCollisionLeft()
 {
-	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y][g_cCharLocation.X-1] == 'A')
+	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y][g_cCharLocation.X-1] == (char)219)
 		g_Collision = true;
 	else
 		g_Collision = false;
 }
 void checkCollisionRight()
 {
-	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y][g_cCharLocation.X+2] == 'A')
+	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y][g_cCharLocation.X+1] == (char)219)
 		g_Collision = true;
 	else
 		g_Collision = false;
@@ -233,6 +242,7 @@ void moveCharacter()
 		    g_cCharLocation.X++;
         
     }
+	if(
 }
 void processUserInput()
 {
@@ -280,6 +290,7 @@ void renderCharacter()
 {
     // Draw the location of the character
     g_Console.writeToBuffer(g_cCharLocation, (char)1, 0x0C);
+	g_Console.writeToBuffer(g_cEnemyLocation, (char)1, 0x0D);
 }
 
 void renderFramerate()
