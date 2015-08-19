@@ -6,15 +6,12 @@
 #include "main_menu.h"
 #include <iostream>
 #include <iomanip>
-<<<<<<< Updated upstream
 #include <sstream>
 #include <string>
 #include <fstream>
 using  std::string;
 using std::ifstream;
-=======
 #include <Windows.h>
->>>>>>> Stashed changes
 
 double  g_dElapsedTime;
 double  g_dDeltaTime;
@@ -81,7 +78,7 @@ Console g_Console(100, 40, "SP1 Framework");
 // Input    : void
 // Output   : void
 //--------------------------------------------------------------
-void init( void )
+void init(void)
 {
     // Set precision for floating point output
     g_dElapsedTime = 0.0;
@@ -94,7 +91,6 @@ void init( void )
 	g_cWalls.X = 1; 
 	g_cWalls.Y = 5;
 }
-<<<<<<< Updated upstream
 void checkCollisionUp()
 {
 	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y-1][g_cCharLocation.X+1] == 'A')
@@ -131,23 +127,8 @@ void checkCollisionRight()
 // Input    : Void
 // Output   : void
 //--------------------------------------------------------------
-void shutdown( void )
-=======
-
-void startMenu()
-{
-    getInput();
-    if (keyPressed[K_UP] || keyPressed[K_LEFT] || keyPressed[K_DOWN] || keyPressed[K_RIGHT])
-    {
-        colour(0x0F);
-        cls();
-        sPage();
-    }
-
-}
 
 void shutdown()
->>>>>>> Stashed changes
 {
     // Reset to white text on black background
     colour(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
@@ -166,7 +147,7 @@ void shutdown()
 // Input    : Void
 // Output   : void
 //--------------------------------------------------------------
-void getInput( void )
+void getInput(void)
 {    
     g_abKeyPressed[K_UP]     = isKeyPressed(VK_UP);
     g_abKeyPressed[K_DOWN]   = isKeyPressed(VK_DOWN);
@@ -209,6 +190,7 @@ void update(double dt)
 //--------------------------------------------------------------
 void render()
 {
+
     clearScreen();      // clears the current screen and draw from scratch 
     renderMap();        // renders the map to the buffer first
     renderCharacter();  // renders the character into the buffer
@@ -261,22 +243,19 @@ void processUserInput()
 
 void clearScreen()
 {
-<<<<<<< Updated upstream
     // Clears the buffer with this colour attribute
     g_Console.clearBuffer(0x1F);
 }
 void renderMap()
 {
- mapReadlevelone();
-  for(int i = 0; i < 7; ++i)
- {
-	 for(int j = 0; j < 60; ++j)
-	 {
-		g_Console.writeToBuffer(j,i, MAZE_LEVEL_ZERO[i][j],0x0F);
-	 }
- }
-}
-=======
+    mapReadlevelone();
+    for(int i = 0; i < 7; ++i)
+    {
+	    for(int j = 0; j < 60; ++j)
+	    {
+		    g_Console.writeToBuffer(j,i, MAZE_LEVEL_ZERO[i][j],0x0F);
+	    }
+    }
     // clear previous screen
     colour(0x0F);
     cls();
@@ -295,7 +274,7 @@ void renderMap()
 		colour(colors[i]);
 		std::cout << "LOL";
 	*/
->>>>>>> Stashed changes
+}
 
 void renderCharacter()
 {
@@ -325,4 +304,9 @@ void renderToScreen()
 {
     // Writes the buffer to the console, hence you will see what you have written
     g_Console.flushBufferToConsole();
+}
+
+void renderMenu()
+{
+    
 }

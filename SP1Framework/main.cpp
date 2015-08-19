@@ -18,14 +18,8 @@ void mainLoop( void );
 // main function - starting function
 // You should not be modifying this unless you know what you are doing
 int main( void )
-{
-<<<<<<< Updated upstream
-    init();      // initialize your variables
-=======
-    
+{   
 	init();      // initialize your variables
-    menu();
->>>>>>> Stashed changes
     mainLoop();  // main loop
     shutdown();  // do clean up, if any. free memory.
     

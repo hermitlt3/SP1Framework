@@ -5,11 +5,6 @@
 string line;
 ifstream myfile;
 
-void menu()
-{
-    fPage();
-}
-
 void fPage()
 {
         myfile.open("fPagee.nfo");
@@ -23,7 +18,7 @@ void fPage()
             myfile.close();
             colour(0x1F);
         }
-        startMenu();
+        //startMenu();
 }
 
 void sPage()
