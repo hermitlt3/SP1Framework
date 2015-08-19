@@ -3,13 +3,18 @@
 //
 #include "game.h"
 #include "Framework\console.h"
+#include "main_menu.h"
 #include <iostream>
 #include <iomanip>
+<<<<<<< Updated upstream
 #include <sstream>
 #include <string>
 #include <fstream>
 using  std::string;
 using std::ifstream;
+=======
+#include <Windows.h>
+>>>>>>> Stashed changes
 
 double  g_dElapsedTime;
 double  g_dDeltaTime;
@@ -89,6 +94,7 @@ void init( void )
 	g_cWalls.X = 1; 
 	g_cWalls.Y = 5;
 }
+<<<<<<< Updated upstream
 void checkCollisionUp()
 {
 	if(MAZE_LEVEL_ZERO[g_cCharLocation.Y-1][g_cCharLocation.X+1] == 'A')
@@ -126,6 +132,22 @@ void checkCollisionRight()
 // Output   : void
 //--------------------------------------------------------------
 void shutdown( void )
+=======
+
+void startMenu()
+{
+    getInput();
+    if (keyPressed[K_UP] || keyPressed[K_LEFT] || keyPressed[K_DOWN] || keyPressed[K_RIGHT])
+    {
+        colour(0x0F);
+        cls();
+        sPage();
+    }
+
+}
+
+void shutdown()
+>>>>>>> Stashed changes
 {
     // Reset to white text on black background
     colour(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
@@ -239,6 +261,7 @@ void processUserInput()
 
 void clearScreen()
 {
+<<<<<<< Updated upstream
     // Clears the buffer with this colour attribute
     g_Console.clearBuffer(0x1F);
 }
@@ -253,6 +276,26 @@ void renderMap()
 	 }
  }
 }
+=======
+    // clear previous screen
+    colour(0x0F);
+    cls();
+
+    //render the game
+
+    //render test screen code (not efficient at all)
+    /*const WORD colors[] =   {
+	                        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
+	                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
+	                        };
+	
+	for (int i = 0; i < 12; ++i)
+	{
+		gotoXY(3*i,i+1);
+		colour(colors[i]);
+		std::cout << "LOL";
+	*/
+>>>>>>> Stashed changes
 
 void renderCharacter()
 {
