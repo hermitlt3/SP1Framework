@@ -2,89 +2,33 @@
 //
 //
 #include "game.h"
+#include "detectors.h"
 #include "Framework\console.h"
 #include "main_menu.h"
 #include <iostream>
 #include <iomanip>
 #include <sstream>
-#include <string>
-#include <fstream>
-using  std::string;
-using std::ifstream;
+#include "map.h"
+
+
 #include <Windows.h>
 
 double  g_dElapsedTime;
 double  g_dDeltaTime;
-bool g_Collision;
 bool g_abKeyPressed[K_COUNT];
+bool g_Collision;
+char MAZE_LEVEL_ZERO[20][150];
 int MapHeight;
 int MapWidth;
-char MAZE_LEVEL_ZERO[20][79]; 
-void mapReadlevelzero()
-{
- MapHeight = 7;
- MapWidth = 60;
- string maze;
- ifstream catridge;
- catridge.open("level0.txt");
- for (int i = 0;i < MapHeight;++i)
-	{
-		getline(catridge,maze);
-		for(int j = 0,a  = 0; j < MapWidth, a <maze.length(); ++j,++a)
-	  {
-		  switch(maze[a])
-		  {
-		  case'#': MAZE_LEVEL_ZERO[i][j] =  219;
-			  break;
-		  case' ': MAZE_LEVEL_ZERO[i][j] = ' ';
-			  break;
-		  case'E': MAZE_LEVEL_ZERO[i][j] = 'E';
-			  break;
-		  }
-		}
-	}
-}
-void mapReadlevelone()
-{
- MapHeight = 7;
- MapWidth = 60;
- string maze;
- ifstream catridge;
- catridge.open("level1.txt");
- for (int i = 0;i < MapHeight;++i)
-	{
-		getline(catridge,maze);
-		for(int j = 0,a  = 0; j < MapWidth, a <maze.length(); ++j,++a)
-	  {
-		  switch(maze[a])
-		  {
-		  case'#': MAZE_LEVEL_ZERO[i][j] = 219;
-			  break;
-		  case' ': MAZE_LEVEL_ZERO[i][j] = ' ';
-			  break;
-		  case'N': MAZE_LEVEL_ZERO[i][j] = 'N';
-			  break;
-			  case'E': MAZE_LEVEL_ZERO[i][j] = 'E';
-			  break;
-		  }
-		}
-	}
-}
-
-
 // Game specific variables here
-
-COORD   g_cCharLocation;
-COORD g_cEnemyLocation;
-COORD   g_cWalls;
-
+int mapLevelno = 10;
 SGameChar   g_sChar;
 EGAMESTATES g_eGameState = S_SPLASHSCREEN;
 double  g_dBounceTime; // this is to prevent key bouncing, so we won't trigger keypresses more than once
 
 
 // Console object
-Console g_Console(100, 40, "SP1 Framework");
+Console g_Console(150, 80, "SP1 Framework");
 
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
@@ -101,46 +45,14 @@ void init(void)
 
     // sets the initial state for the game
     g_eGameState = S_SPLASHSCREEN;
-
-
-    g_sChar.m_cLocation.X = 3;
-    g_sChar.m_cLocation.Y = 4;
     g_sChar.m_bActive = true;
-
+	mapReadlevel();
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 16, L"Consolas");
-	//enemy one
-	g_cEnemyLocation.X = 6;
-	g_cEnemyLocation.Y = 9;
 }
-void checkCollisionUp()
-{
-	if(MAZE_LEVEL_ZERO[g_sChar.m_cLocation.Y-1][g_sChar.m_cLocation.X] == (char)219 )
-		g_Collision = true;
-	else
-		g_Collision = false;
-}
-void checkCollisionDown()
-{
-	if(MAZE_LEVEL_ZERO[g_sChar.m_cLocation.Y+1][g_sChar.m_cLocation.X] == (char)219)
-		g_Collision = true;
-	else
-		g_Collision = false;
-}
-void checkCollisionLeft()
-{
-	if(MAZE_LEVEL_ZERO[g_sChar.m_cLocation.Y][g_sChar.m_cLocation.X-1] == (char)219)
-		g_Collision = true;
-	else
-		g_Collision = false;
-}
-void checkCollisionRight()
-{
-	if(MAZE_LEVEL_ZERO[g_sChar.m_cLocation.Y][g_sChar.m_cLocation.X+1] == (char)219)
-		g_Collision = true;
-	else
-		g_Collision = false;
-}
+
+
+ 
 // g_Console.writeToBuffer(g_cWalls, '#',0xA2);
 //--------------------------------------------------------------
 // Purpose  : Reset before exiting the program
@@ -198,14 +110,14 @@ void update(double dt)
     // get the delta time
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;
-
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
             break;
         case S_GAME: gameplay(); // gameplay logic when we are in the game
             break;
-    }
+    } 
+	checkEnd();
 }
 //--------------------------------------------------------------
 // Purpose  : Render function is to update the console screen
@@ -248,7 +160,7 @@ void moveCharacter()
     bool bSomethingHappened = false;
     if (g_dBounceTime > g_dElapsedTime)
         return;
-
+//		checkEnd();
     // Updating the location of the character based on the key press
     // providing a beep sound whenver we shift the character
 
@@ -256,32 +168,32 @@ void moveCharacter()
 	{
 		 //Beep(1440, 30);
 		bSomethingHappened = true;
-		checkCollisionUp();
-		 if(g_Collision == false)
+		checkCollisionUp(g_sChar.m_cLocation.X, g_sChar.m_cLocation.Y);
+		if(g_Collision == false)
 		    g_sChar.m_cLocation.Y--;
     }
     if (g_abKeyPressed[K_LEFT] && g_sChar.m_cLocation.X > 0)
     {
         //Beep(1440, 30);
 		bSomethingHappened = true;
-		checkCollisionLeft();
-		 if(g_Collision == false)
+		checkCollisionLeft(g_sChar.m_cLocation.X, g_sChar.m_cLocation.Y);
+		if(g_Collision == false)
 		     g_sChar.m_cLocation.X--; 
     }
     if (g_abKeyPressed[K_DOWN] && g_sChar.m_cLocation.Y < g_Console.getConsoleSize().Y - 1)
     {
         //Beep(1440, 30);
 		bSomethingHappened = true;
-		checkCollisionDown();;
-		 if(g_Collision == false)
+		checkCollisionDown(g_sChar.m_cLocation.X, g_sChar.m_cLocation.Y);
+		if(g_Collision == false)
 		    g_sChar.m_cLocation.Y++; 
     }
     if (g_abKeyPressed[K_RIGHT] && g_sChar.m_cLocation.X < g_Console.getConsoleSize().X - 1)
     {
         //Beep(1440, 30);
 		bSomethingHappened = true;
-		checkCollisionRight();
-		 if(g_Collision == false)
+		checkCollisionRight(g_sChar.m_cLocation.X, g_sChar.m_cLocation.Y);
+		if(g_Collision == false)
 		    g_sChar.m_cLocation.X++;
     }
     if (g_abKeyPressed[K_SPACE])
@@ -332,10 +244,9 @@ void renderGame()
 
 void renderMap()
 {
-    mapReadlevelone();
-    for(int i = 0; i < 7; ++i)
+    for(int i = 0; i < MapHeight; ++i)
     {
-	    for(int j = 0; j < 60; ++j)
+	    for(int j = 0; j < MapWidth; ++j)
 	    {
 		    g_Console.writeToBuffer(j,i, MAZE_LEVEL_ZERO[i][j],0x0F);
 	    }
@@ -345,26 +256,11 @@ void renderMap()
     cls();
 
     //render the game
-
-    //render test screen code (not efficient at all)
-    /*const WORD colors[] =   {
-	                        0x1A, 0x2B, 0x3C, 0x4D, 0x5E, 0x6F,
-	                        0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
-	                        };
-	
-	for (int i = 0; i < 12; ++i)
-	{
-		gotoXY(3*i,i+1);
-		colour(colors[i]);
-		std::cout << "LOL";
-	*/
 }
 
 void renderCharacter()
 {
     // Draw the location of the character
-
-	g_Console.writeToBuffer(g_cEnemyLocation, (char)1, 0x0D);
 
     WORD charColor = 0x0C;
     if (g_sChar.m_bActive)
@@ -372,7 +268,6 @@ void renderCharacter()
         charColor = 0x0A;
     }
     g_Console.writeToBuffer(g_sChar.m_cLocation, 'O', charColor);
-
 }
 
 void renderFramerate()
