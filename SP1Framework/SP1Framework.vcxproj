@@ -76,6 +76,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="detectors.cpp" />
+    <ClCompile Include="comments.cpp" />
+    <ClCompile Include="enemy.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="Framework\console.cpp" />
     <ClCompile Include="Framework\timer.cpp" />
@@ -85,6 +87,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="detectors.h" />
+    <ClInclude Include="comments.h" />
+    <ClInclude Include="enemy.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="Framework\console.h" />
     <ClInclude Include="Framework\timer.h" />

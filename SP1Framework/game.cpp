@@ -9,6 +9,8 @@
 #include <iomanip>
 #include <sstream>
 #include "map.h"
+#include "enemy.h"
+#include "comments.h"
 
 
 #include <Windows.h>
@@ -17,12 +19,22 @@ double  g_dElapsedTime;
 double  g_dDeltaTime;
 bool g_abKeyPressed[K_COUNT];
 bool g_Collision;
-char MAZE_LEVEL_ZERO[20][150];
+bool pausemovement = false;
+bool messageshown = false;
+bool printmap = true;
+char MAP_LEVEL[20][150];
 int MapHeight;
 int MapWidth;
 // Game specific variables here
-int mapLevelno = 10;
+int mapLevelno = 0;
 SGameChar   g_sChar;
+SGameChar g_sEnemyOne;
+SGameChar g_sEnemyTwo;
+SGameChar g_sEnemyThree;
+SGameChar g_sEnemyFour;
+SGameChar g_sEnemyFive;
+SGameChar g_sEnemySix;
+
 EGAMESTATES g_eGameState = S_SPLASHSCREEN;
 double  g_dBounceTime; // this is to prevent key bouncing, so we won't trigger keypresses more than once
 
@@ -110,6 +122,10 @@ void update(double dt)
     // get the delta time
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;
+	update_comments(mapLevelno);
+	ENEMY_MOVEMENT(mapLevelno);
+	ENEMY_MEET();
+	//checkPause();
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
@@ -158,9 +174,10 @@ void gameplay()            // gameplay logic
 void moveCharacter()
 {
     bool bSomethingHappened = false;
+	if (pausemovement == true)
+		return;
     if (g_dBounceTime > g_dElapsedTime)
         return;
-//		checkEnd();
     // Updating the location of the character based on the key press
     // providing a beep sound whenver we shift the character
 
@@ -201,7 +218,7 @@ void moveCharacter()
         g_sChar.m_bActive = !g_sChar.m_bActive;
         bSomethingHappened = true;
     }
-
+	checkDoor(g_sChar.m_cLocation.X, g_sChar.m_cLocation.Y);
     if (bSomethingHappened)
     {
         // set the bounce time to some time in the future to prevent accidental triggers
@@ -219,7 +236,7 @@ void processUserInput()
 void clearScreen()
 {
     // Clears the buffer with this colour attribute
-    g_Console.clearBuffer(0x1F);
+    g_Console.clearBuffer(0x0F);
 }
 
 void renderSplashScreen()  // renders the splash screen
@@ -244,14 +261,9 @@ void renderGame()
 
 void renderMap()
 {
-    for(int i = 0; i < MapHeight; ++i)
-    {
-	    for(int j = 0; j < MapWidth; ++j)
-	    {
-		    g_Console.writeToBuffer(j,i, MAZE_LEVEL_ZERO[i][j],0x0F);
-	    }
-    }
+   
     // clear previous screen
+	printMap();
     colour(0x0F);
     cls();
 
@@ -263,11 +275,9 @@ void renderCharacter()
     // Draw the location of the character
 
     WORD charColor = 0x0C;
-    if (g_sChar.m_bActive)
-    {
-        charColor = 0x0A;
-    }
+	//ENEMY_SPAWN(mapLevelno);
     g_Console.writeToBuffer(g_sChar.m_cLocation, 'O', charColor);
+	ENEMY_PRINT(mapLevelno);
 }
 
 void renderFramerate()
@@ -282,16 +292,18 @@ void renderFramerate()
     g_Console.writeToBuffer(c, ss.str());
 
     // displays the elapsed time
-    ss.str("");
+   /*ss.str("");
     ss << g_dElapsedTime << "secs";
     c.X = 0;
     c.Y = 0;
-    g_Console.writeToBuffer(c, ss.str(), 0x59);
+    g_Console.writeToBuffer(c, ss.str(), 0x59)*/
 }
 void renderToScreen()
 {
     // Writes the buffer to the console, hence you will see what you have written
-    g_Console.flushBufferToConsole();
+
+	print_comments();
+   g_Console.flushBufferToConsole();
 }
 
 void renderMenu()

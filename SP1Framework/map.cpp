@@ -94,6 +94,14 @@ extern int MapWidth;
 		 g_sChar.m_cLocation.Y = 1;
 		 catridge.open("level10.txt");
 	 }
+	  if ( i == 11 )
+	 {
+		 MapHeight = 7;
+		 MapWidth = 120;
+         g_sChar.m_cLocation.X = 6; 
+		 g_sChar.m_cLocation.Y = 3;
+		 catridge.open("finallevel.txt");
+	 }
  }
 void mapReadlevel()
 {
@@ -102,6 +110,7 @@ void mapReadlevel()
  g_sChar.m_cLocation.X = 0; 
  g_sChar.m_cLocation.Y = 0;
  level(mapLevelno);
+ ENEMY_SPAWN(mapLevelno);
  for (int i = 0;i < MapHeight;++i)
 	{
 		getline(catridge,maze);
@@ -109,31 +118,35 @@ void mapReadlevel()
 	  {
 		  switch(maze[a])
 		  {
-		  case'#': MAZE_LEVEL_ZERO[i][j] =  219;
+		  case'#': MAP_LEVEL[i][j] =  219;
 			  break;
-		  case' ': MAZE_LEVEL_ZERO[i][j] = ' ';
+		  case' ': MAP_LEVEL[i][j] = ' ';
 			  break;
-		  case'E':  MAZE_LEVEL_ZERO[i][j] = 'E';
+		  case'E':  MAP_LEVEL[i][j] = 'E';
 			  break;	 
-		  case 'N' :  MAZE_LEVEL_ZERO[i][j] = 'N';
+		  case 'N' :  MAP_LEVEL[i][j] = 'N';
 			  break;
-		  case '_': MAZE_LEVEL_ZERO[i][j] = '_';
+		  case '_': MAP_LEVEL[i][j] = '_';
 			  break;
-		  case '\\': MAZE_LEVEL_ZERO[i][j] = '\\';
+		  case '\\': MAP_LEVEL[i][j] = '\\';
 			  break;
 		  }
 		}
 	}
  catridge.close();
 }
-	
-
-	
-void checkEnd()
+void printMap()
 {
-	if(MAZE_LEVEL_ZERO[g_sChar.m_cLocation.Y][g_sChar.m_cLocation.X] == 'E')
+	if(printmap == false)
+		return;
+	else if(printmap == true)
 	{
-		mapLevelno++;
-		mapReadlevel();
+		 for(int i = 0; i < MapHeight; ++i)
+	    {
+		    for(int j = 0; j < MapWidth; ++j)
+		    {	
+				g_Console.writeToBuffer(j,i, MAP_LEVEL[i][j],0x0F);
+			}
+		}
 	}
 }

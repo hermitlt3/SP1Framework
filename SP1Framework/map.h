@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "enemy.h"
 
 using  std::string;
 using std::ifstream;
@@ -14,12 +15,13 @@ using std::ifstream;
 extern Console g_Console;
 extern WORD charColor;
 extern int mapLevelno;
-extern char MAZE_LEVEL_ZERO[20][150];
+extern char MAP_LEVEL[20][150];
 extern SGameChar g_sChar;
+extern bool printmap;
+
 void level(int & i);
 void mapReadlevel();
-void charSpawn();
-void renderLevel();
+void printMap();
 void checkEnd();
 
 
