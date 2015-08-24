@@ -16,6 +16,7 @@ extern SGameChar g_sChar;
 extern double g_dElapsedTime;
 extern bool messageshown;
 extern bool printmap;
+extern double g_dElapsedTime;
 
 void continuemsg();
 void print_comments();

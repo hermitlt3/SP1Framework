@@ -36,6 +36,10 @@ void checkDoor(SHORT X, SHORT Y)
 			MAP_LEVEL[Y][X-1] = ' ';
 		if(MAP_LEVEL[Y][X+1] == '\\')
 			MAP_LEVEL[Y][X+1] = ' ';
+		 if(MAP_LEVEL[Y+1][X] == '_' )
+			MAP_LEVEL[Y+1][X] = ' ';
+		if(MAP_LEVEL[Y-1][X] == '_')
+			MAP_LEVEL[Y-1][X] = ' ';
 		g_sChar.m_bActive = false;
     }
 }

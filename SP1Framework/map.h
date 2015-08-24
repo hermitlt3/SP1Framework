@@ -23,6 +23,7 @@ void level(int & i);
 void mapReadlevel();
 void printMap();
 void checkEnd();
+void printCharacter();
 
 
 #endif

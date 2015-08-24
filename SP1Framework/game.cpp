@@ -125,7 +125,6 @@ void update(double dt)
 	update_comments(mapLevelno);
 	ENEMY_MOVEMENT(mapLevelno);
 	ENEMY_MEET();
-	//checkPause();
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
@@ -275,8 +274,7 @@ void renderCharacter()
     // Draw the location of the character
 
     WORD charColor = 0x0C;
-	//ENEMY_SPAWN(mapLevelno);
-    g_Console.writeToBuffer(g_sChar.m_cLocation, 'O', charColor);
+	printCharacter();
 	ENEMY_PRINT(mapLevelno);
 }
 

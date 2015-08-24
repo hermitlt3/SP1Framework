@@ -150,3 +150,10 @@ void printMap()
 		}
 	}
 }
+void printCharacter()
+{
+	if(printmap == false)
+		return;
+	else
+		g_Console.writeToBuffer(g_sChar.m_cLocation, '0', 0x0C);
+}
