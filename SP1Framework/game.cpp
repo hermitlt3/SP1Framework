@@ -8,6 +8,7 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+
 #include "map.h"
 #include "enemy.h"
 #include "comments.h"
@@ -15,6 +16,14 @@
 
 
 #include <Windows.h>
+
+#include <string>
+#include <fstream>
+#include <Windows.h>
+
+using  std::string;
+using std::ifstream;
+
 
 double  g_dElapsedTime;
 double  g_dDeltaTime;
@@ -27,6 +36,69 @@ bool g_Scare = false;
 char MAP_LEVEL[50][150];
 int MapHeight;
 int MapWidth;
+
+string line;
+string linemenu;
+ifstream myfile;
+ifstream mymenu;
+const int MenuH = 16;
+const int MenuW = 58;
+char MENU[MenuH][MenuW];
+char MAZE_LEVEL_ZERO[20][150]; 
+
+void mapReadlevelzero()
+{
+ MapHeight = 7;
+ MapWidth = 60;
+ string maze;
+ ifstream catridge;
+ catridge.open("level0.txt");
+ for (int i = 0;i < MapHeight;++i)
+	{
+		getline(catridge,maze);
+		for(int j = 0,a  = 0; j < MapWidth, a <maze.length(); ++j,++a)
+	  {
+		  switch(maze[a])
+		  {
+		  case'#': MAZE_LEVEL_ZERO[i][j] =  219;
+			  break;
+		  case' ': MAZE_LEVEL_ZERO[i][j] = ' ';
+			  break;
+		  case'E': MAZE_LEVEL_ZERO[i][j] = 'E';
+			  break;
+		  }
+		}
+	}
+}
+void mapReadlevelone()
+{
+ MapHeight = 7;
+ MapWidth = 60;
+ string maze;
+ ifstream catridge;
+ catridge.open("level1.txt");
+ for (int i = 0;i < MapHeight;++i)
+	{
+		getline(catridge,maze);
+		for(int j = 0,a  = 0; j < MapWidth, a <maze.length(); ++j,++a)
+	  {
+		  switch(maze[a])
+		  {
+		  case'#': MAZE_LEVEL_ZERO[i][j] = 219;
+			  break;
+		  case' ': MAZE_LEVEL_ZERO[i][j] = ' ';
+			  break;
+		  case'N': MAZE_LEVEL_ZERO[i][j] = 'N';
+			  break;
+			  case'E': MAZE_LEVEL_ZERO[i][j] = 'E';
+			  break;
+		  }
+		}
+	}
+}
+
+
+
 // Game specific variables here
 int mapLevelno = 0;
 SGameChar   g_sChar;
@@ -58,11 +130,50 @@ void init(void)
     g_dBounceTime = 0.0;
 
     // sets the initial state for the game
-    g_eGameState = S_SPLASHSCREEN;
+
+    //g_eGameState = S_SPLASHSCREEN;
+
+    g_eGameState = S_MENU;
+
+
+    g_sChar.m_cLocation.X = 3;
+    g_sChar.m_cLocation.Y = 4;
+
     g_sChar.m_bActive = true;
 	mapReadlevel();
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 16, L"Consolas");
+}
+
+
+
+void checkCollisionUp()
+{
+	if(MAZE_LEVEL_ZERO[g_sChar.m_cLocation.Y-1][g_sChar.m_cLocation.X] == (char)219 )
+		g_Collision = true;
+	else
+		g_Collision = false;
+}
+void checkCollisionDown()
+{
+	if(MAZE_LEVEL_ZERO[g_sChar.m_cLocation.Y+1][g_sChar.m_cLocation.X] == (char)219)
+		g_Collision = true;
+	else
+		g_Collision = false;
+}
+void checkCollisionLeft()
+{
+	if(MAZE_LEVEL_ZERO[g_sChar.m_cLocation.Y][g_sChar.m_cLocation.X-1] == (char)219)
+		g_Collision = true;
+	else
+		g_Collision = false;
+}
+void checkCollisionRight()
+{
+	if(MAZE_LEVEL_ZERO[g_sChar.m_cLocation.Y][g_sChar.m_cLocation.X+1] == (char)219)
+		g_Collision = true;
+	else
+		g_Collision = false;
 }
 
 
@@ -103,6 +214,7 @@ void getInput(void)
     g_abKeyPressed[K_RIGHT]  = isKeyPressed(VK_RIGHT);
     g_abKeyPressed[K_SPACE]  = isKeyPressed(VK_SPACE);
     g_abKeyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
+    g_abKeyPressed[K_RETURN] = isKeyPressed(VK_RETURN);
 }
 
 //--------------------------------------------------------------
@@ -133,7 +245,9 @@ void update(double dt)
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
             break;
         case S_GAME: gameplay(); // gameplay logic when we are in the game
-            break;	
+            break;
+        case S_MENU: startGame();
+            break;
     } 
 	checkEnd();
 }
@@ -147,11 +261,12 @@ void update(double dt)
 //--------------------------------------------------------------
 void render()
 {
-
     clearScreen();      // clears the current screen and draw from scratch 
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN: renderSplashScreen();
+            break;
+        case S_MENU: readMenu();
             break;
         case S_GAME: renderGame();
             break;
@@ -162,7 +277,7 @@ void render()
 
 void splashScreenWait()    // waits for time to pass in splash screen
 {
-    if (g_dElapsedTime > 0.0) // wait for 3 seconds to switch to game mode, else do nothing
+    if (g_dElapsedTime > 2.0) // wait for 3 seconds to switch to game mode, else do nothing
         g_eGameState = S_GAME;
 }
 
@@ -308,7 +423,100 @@ void renderToScreen()
 
 }
 
-void renderMenu()
+void readMenu()
 {
-    
+    myfile.open("fPagee.nfo");
+    if(myfile.is_open())
+    {
+        for(int currH = 0; currH < MenuH; currH++)
+        {
+            getline(myfile,line);
+            for(int currW = 0,a = 0; currW < MenuW; currW++, a++)
+            {
+                switch(line[a])
+                {
+                case 'Û':MENU[currH][currW] = 219;
+                    break;
+                case '²':MENU[currH][currW] = 178;
+                    break;
+                case 'Ü':MENU[currH][currW] = 220;
+                    break;
+                case ' ':MENU[currH][currW] = 32;
+                    break;
+                case '±':MENU[currH][currW] = 177;
+                    break;
+                case 'ß':MENU[currH][currW] = 223;
+                    break;
+                case '°':MENU[currH][currW] = 176;
+                    break;
+                case 'C':MENU[currH][currW] = 67;
+                    break;
+                case 'h':MENU[currH][currW] = 104;
+                    break;
+                case 'o':MENU[currH][currW] = 111;
+                    break;
+                case 's':MENU[currH][currW] = 115;
+                    break;
+                case 'e':MENU[currH][currW] = 101;
+                    break;
+                case 'a':MENU[currH][currW] = 97;
+                    break;
+                case 'd':MENU[currH][currW] = 100;
+                    break;
+                case 'i':MENU[currH][currW] = 105;
+                    break;
+                case 'c':MENU[currH][currW] = 99;
+                    break;
+                case 'u':MENU[currH][currW] = 117;
+                    break;
+                case 'l':MENU[currH][currW] = 108;
+                    break;
+                case 't':MENU[currH][currW] = 116;
+                    break;
+                case 'y':MENU[currH][currW] = 121;
+                    break;
+                case ')':MENU[currH][currW] = 41;
+                    break;
+                case 'E':MENU[currH][currW] = 69;
+                    break;
+                case 'N':MENU[currH][currW] = 78;
+                    break;
+                case 'H':MENU[currH][currW] = 72;
+                    break;
+                case 'r':MENU[currH][currW] = 114;
+                    break;
+                case 'm':MENU[currH][currW] = 109;
+                    break;
+                case 'b':MENU[currH][currW] = 98;
+                    break;
+                case 'f':MENU[currH][currW] = 102;
+                    break;
+                case '1':MENU[currH][currW] = 49;
+                    break;
+                case '2':MENU[currH][currW] = 50;
+                    break;
+                case '3':MENU[currH][currW] = 51;
+                    break;
+                }
+            }
+        }
+        myfile.close();
+    }
+    for(int height = 0, meow1 = 2; height <  MenuH; height++, meow1++)
+    {   for(int width = 0, mew1 = 10; width < MenuW; width++, mew1++)
+        {
+            g_Console.writeToBuffer(mew1, meow1, MENU[height][width], 0x0C);
+        }
+    }
+}
+
+//void 
+
+void startGame()
+{
+    if (g_abKeyPressed[K_RETURN])
+    {
+        g_eGameState = S_GAME;
+    }
+    processUserInput();
 }
