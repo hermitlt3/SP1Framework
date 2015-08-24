@@ -28,6 +28,7 @@
     <ClCompile Include="enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="joff.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -54,6 +55,7 @@
     <ClInclude Include="enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="jofff.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Source Files">
@@ -68,5 +70,8 @@
     <Filter Include="Source Files\Framework">
       <UniqueIdentifier>{8e9f2362-5784-4688-b617-0a50f9d05669}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Joff3.nfo" />
   </ItemGroup>
 </Project>

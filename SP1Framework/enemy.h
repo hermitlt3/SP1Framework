@@ -8,6 +8,7 @@
 #include <string>
 #include <fstream>
 #include "map.h"
+#include "jofff.h"
 
 using  std::string;
 

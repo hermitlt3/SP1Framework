@@ -11,6 +11,7 @@
 #include "map.h"
 #include "enemy.h"
 #include "comments.h"
+#include "jofff.h";
 
 
 #include <Windows.h>
@@ -22,7 +23,7 @@ bool g_Collision;
 bool pausemovement = false;
 bool messageshown = false;
 bool printmap = true;
-char MAP_LEVEL[20][150];
+char MAP_LEVEL[50][150];
 int MapHeight;
 int MapWidth;
 // Game specific variables here
@@ -40,7 +41,7 @@ double  g_dBounceTime; // this is to prevent key bouncing, so we won't trigger k
 
 
 // Console object
-Console g_Console(150, 80, "SP1 Framework");
+Console g_Console(80, 50, "SP1 Framework");
 
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
@@ -131,6 +132,7 @@ void update(double dt)
             break;
         case S_GAME: gameplay(); // gameplay logic when we are in the game
             break;
+		
     } 
 	checkEnd();
 }
@@ -299,9 +301,9 @@ void renderFramerate()
 void renderToScreen()
 {
     // Writes the buffer to the console, hence you will see what you have written
-
 	print_comments();
    g_Console.flushBufferToConsole();
+   joff();
 }
 
 void renderMenu()

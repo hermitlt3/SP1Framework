@@ -78,6 +78,7 @@
     <ClCompile Include="detectors.cpp" />
     <ClCompile Include="comments.cpp" />
     <ClCompile Include="enemy.cpp" />
+    <ClCompile Include="joff.cpp" />
     <ClCompile Include="map.cpp" />
     <ClCompile Include="Framework\console.cpp" />
     <ClCompile Include="Framework\timer.cpp" />
@@ -89,11 +90,15 @@
     <ClInclude Include="detectors.h" />
     <ClInclude Include="comments.h" />
     <ClInclude Include="enemy.h" />
+    <ClInclude Include="jofff.h" />
     <ClInclude Include="map.h" />
     <ClInclude Include="Framework\console.h" />
     <ClInclude Include="Framework\timer.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="main_menu.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Joff3.nfo" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

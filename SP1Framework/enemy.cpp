@@ -14,7 +14,7 @@ void ENEMY_MEET()
 
 	if (g_sChar.m_cLocation.X == g_sEnemyTwo.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemyTwo.m_cLocation.Y)
 		g_bQuitGame = true;
-
+	
 	if (g_sChar.m_cLocation.X == g_sEnemyThree.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemyThree.m_cLocation.Y)
 		g_bQuitGame = true;
 
@@ -26,6 +26,7 @@ void ENEMY_MEET()
 
 	if (g_sChar.m_cLocation.X == g_sEnemySix.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemySix.m_cLocation.Y)
 		g_bQuitGame = true;
+		
 }
 
 void ENEMY_SPAWN(int i)
