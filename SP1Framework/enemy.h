@@ -24,8 +24,10 @@ extern SGameChar g_sEnemyFour;
 extern SGameChar g_sEnemyFive;
 extern SGameChar g_sEnemySix;
 extern bool pausemovement;
+extern bool g_Scare;
 extern bool printmap;
 extern double g_dElapsedTime;
+extern bool g_abKeyPressed[K_COUNT];
 
 void ENEMY_MEET();
 void ENEMY_SPAWN(int i);
@@ -54,6 +56,8 @@ void LOAD_EPATH_SEVEN();
 void LOAD_EPATH_EIGHT();
 void LOAD_EPATH_NINE();
 void LOAD_EPATH_TEN();
+void JumpScare();
+void ScareRender();
 
 
 #endif
