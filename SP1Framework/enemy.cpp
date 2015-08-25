@@ -7,27 +7,51 @@ bool reverse4;
 bool reverse5;
 bool reverse6;
 double velocity;
+
+void JumpScare()
+{
+	if (g_Scare == true)
+	{
+		printmap = false;
+		if (g_abKeyPressed[K_SPACE])
+		{
+			printmap = true;
+			g_Scare = false;
+		}
+	}
+}
+
+void ScareRender()
+{
+	if (g_Scare == true)
+	{
+		joff();
+	}
+}
+
 void ENEMY_MEET()
 {
 	if (g_sChar.m_cLocation.X == g_sEnemyOne.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemyOne.m_cLocation.Y)
-		g_bQuitGame = true;
+		g_Scare = true;
 
 	if (g_sChar.m_cLocation.X == g_sEnemyTwo.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemyTwo.m_cLocation.Y)
-		g_bQuitGame = true;
+g_Scare = true;
 	
 	if (g_sChar.m_cLocation.X == g_sEnemyThree.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemyThree.m_cLocation.Y)
-		g_bQuitGame = true;
+		g_Scare = true;
 
 	if (g_sChar.m_cLocation.X == g_sEnemyFour.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemyFour.m_cLocation.Y)
-		g_bQuitGame = true;
+		g_Scare = true;
 
 	if (g_sChar.m_cLocation.X == g_sEnemyFive.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemyFive.m_cLocation.Y)
-		g_bQuitGame = true;
+		g_Scare = true;
 
 	if (g_sChar.m_cLocation.X == g_sEnemySix.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemySix.m_cLocation.Y)
-		g_bQuitGame = true;
+		g_Scare = true;
 		
 }
+
+
 
 void ENEMY_SPAWN(int i)
 {
@@ -57,6 +81,7 @@ void ENEMY_SPAWN(int i)
 		break;
 	}
 }
+
 
 
 void LOAD_ENEMY_ZERO()
