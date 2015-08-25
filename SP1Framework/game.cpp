@@ -11,7 +11,7 @@
 #include "map.h"
 #include "enemy.h"
 #include "comments.h"
-#include "jofff.h";
+//#include "jofff.h";
 
 
 #include <Windows.h>
@@ -23,6 +23,7 @@ bool g_Collision;
 bool pausemovement = false;
 bool messageshown = false;
 bool printmap = true;
+bool g_Scare = false;
 char MAP_LEVEL[50][150];
 int MapHeight;
 int MapWidth;
@@ -126,13 +127,13 @@ void update(double dt)
 	update_comments(mapLevelno);
 	ENEMY_MOVEMENT(mapLevelno);
 	ENEMY_MEET();
+	JumpScare();
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
             break;
         case S_GAME: gameplay(); // gameplay logic when we are in the game
-            break;
-		
+            break;	
     } 
 	checkEnd();
 }
@@ -302,8 +303,9 @@ void renderToScreen()
 {
     // Writes the buffer to the console, hence you will see what you have written
 	print_comments();
+	ScareRender();
    g_Console.flushBufferToConsole();
-   joff();
+
 }
 
 void renderMenu()
