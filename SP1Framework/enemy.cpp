@@ -13,10 +13,11 @@ void JumpScare()
 	if (g_Scare == true)
 	{
 		printmap = false;
-		if (g_abKeyPressed[K_SPACE])
+		if (g_abKeyPressed[K_SPACE] && g_Scare == true)
 		{
 			printmap = true;
 			g_Scare = false;
+			ResetPos();
 		}
 	}
 }
@@ -28,6 +29,69 @@ void ScareRender()
 		joff();
 	}
 }
+void ResetPos()
+{
+	if ( ResPos == 0 )
+	 {
+		g_sChar.m_cLocation.X = 2; 
+		g_sChar.m_cLocation.Y = 3;
+	 }
+	 if ( ResPos == 1 )
+	 {
+         g_sChar.m_cLocation.X = 2; 
+		 g_sChar.m_cLocation.Y = 1;
+	 }
+	 if ( ResPos == 2 )
+	 {
+         g_sChar.m_cLocation.X = 2; 
+		 g_sChar.m_cLocation.Y = 1;
+	 }
+	 if ( ResPos == 3 )
+	 {
+         g_sChar.m_cLocation.X = 8; 
+		 g_sChar.m_cLocation.Y = 5;
+	 }
+	 if ( ResPos == 4 )
+	 {
+         g_sChar.m_cLocation.X = 2; 
+		 g_sChar.m_cLocation.Y = 8;
+	 }
+	 if ( ResPos == 5 )
+	 {
+         g_sChar.m_cLocation.X = 2; 
+		 g_sChar.m_cLocation.Y = 10;
+	 }
+	 if ( ResPos == 6 )
+	 {
+         g_sChar.m_cLocation.X = 11; 
+		 g_sChar.m_cLocation.Y = 1;
+	 }
+	 if ( ResPos == 7 )
+	 {
+         g_sChar.m_cLocation.X = 2; 
+		 g_sChar.m_cLocation.Y = 1;
+	 }
+	 if ( ResPos == 8 )
+	 {
+         g_sChar.m_cLocation.X = 46; 
+		 g_sChar.m_cLocation.Y = 16;
+	 }
+	 if ( ResPos == 9 )
+	 {
+         g_sChar.m_cLocation.X = 2; 
+		 g_sChar.m_cLocation.Y = 1;
+	 }
+	 if ( ResPos == 10 )
+	 {
+         g_sChar.m_cLocation.X = 5; 
+		 g_sChar.m_cLocation.Y = 1;
+	 }
+	  if ( ResPos == 11 )
+	 {
+         g_sChar.m_cLocation.X = 6; 
+		 g_sChar.m_cLocation.Y = 3;
+	 }
+}
 
 void ENEMY_MEET()
 {
@@ -35,7 +99,7 @@ void ENEMY_MEET()
 		g_Scare = true;
 
 	if (g_sChar.m_cLocation.X == g_sEnemyTwo.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemyTwo.m_cLocation.Y)
-g_Scare = true;
+		g_Scare = true;
 	
 	if (g_sChar.m_cLocation.X == g_sEnemyThree.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemyThree.m_cLocation.Y)
 		g_Scare = true;
