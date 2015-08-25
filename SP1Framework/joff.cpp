@@ -38,7 +38,7 @@ void joffPrint()
 	for (int i = 0; i < joffH; ++i)
 	{
 		for (int j = 0; j < joffW; ++j)
-		{				
+		{	
 			g_Console.writeToBuffer(j, i, JOFF_LEVEL[i][j], 0xFC);
 		}
 	}
