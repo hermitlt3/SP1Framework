@@ -6,11 +6,14 @@
 #include <string>
 #include <conio.h>
 #include <stdio.h>
+#include "enemy.h"
 
 using std::string;
 using std::cout;
 using std::endl;
 using std::ifstream;
+using std::getline;
+
 
 
 
