@@ -22,12 +22,13 @@ bool g_Collision;
 bool pausemovement = false;
 bool messageshown = false;
 bool printmap = true;
+bool scare = false;
 char MAP_LEVEL[20][150];
 int MapHeight;
 int MapWidth;
 // Game specific variables here
 int mapLevelno = 0;
-SGameChar   g_sChar;
+SGameChar g_sChar;
 SGameChar g_sEnemyOne;
 SGameChar g_sEnemyTwo;
 SGameChar g_sEnemyThree;
@@ -39,8 +40,8 @@ EGAMESTATES g_eGameState = S_SPLASHSCREEN;
 double  g_dBounceTime; // this is to prevent key bouncing, so we won't trigger keypresses more than once
 
 
-// Console object
-Console g_Console(150, 80, "SP1 Framework");
+// Console object0
+Console g_Console(80, 50, "SP1 Framework");
 
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
@@ -125,12 +126,15 @@ void update(double dt)
 	update_comments(mapLevelno);
 	ENEMY_MOVEMENT(mapLevelno);
 	ENEMY_MEET();
+	//JUMP_SCARE();
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
             break;
         case S_GAME: gameplay(); // gameplay logic when we are in the game
             break;
+		case S_RELOAD: restartmap();
+			break;
     } 
 	checkEnd();
 }
@@ -162,6 +166,7 @@ void splashScreenWait()    // waits for time to pass in splash screen
     if (g_dElapsedTime > 0.0) // wait for 3 seconds to switch to game mode, else do nothing
         g_eGameState = S_GAME;
 }
+
 
 void gameplay()            // gameplay logic
 {
@@ -301,6 +306,7 @@ void renderToScreen()
     // Writes the buffer to the console, hence you will see what you have written
 
 	print_comments();
+	//print_Joff();
    g_Console.flushBufferToConsole();
 }
 

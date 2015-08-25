@@ -7,6 +7,7 @@ void checkCollisionUp(SHORT X, SHORT Y)
 	else
 		g_Collision = false;
 }
+
 void checkCollisionDown(SHORT X, SHORT Y)
 {
 	if(MAP_LEVEL[Y+1][X] == (char)219 || MAP_LEVEL[Y+1][X] == '\\' || MAP_LEVEL[Y+1][X] == '_')
@@ -14,6 +15,7 @@ void checkCollisionDown(SHORT X, SHORT Y)
 	else
 		g_Collision = false;
 }
+
 void checkCollisionLeft(SHORT X, SHORT Y)
 {
 	if(MAP_LEVEL[Y][X-1] == (char)219 || MAP_LEVEL[Y][X-1] == '\\' || MAP_LEVEL[Y][X-1] == '_')
@@ -21,6 +23,7 @@ void checkCollisionLeft(SHORT X, SHORT Y)
 	else
 		g_Collision = false;
 }
+
 void checkCollisionRight(SHORT X, SHORT Y)
 {
 	if(MAP_LEVEL[Y][X+1] == (char)219 || MAP_LEVEL[Y][X+1] == '\\' || MAP_LEVEL[Y][X+1] == '_')
@@ -28,6 +31,7 @@ void checkCollisionRight(SHORT X, SHORT Y)
 	else
 		g_Collision = false;
 }
+
 void checkDoor(SHORT X, SHORT Y)
 {
 	 if (g_sChar.m_bActive)
@@ -43,6 +47,7 @@ void checkDoor(SHORT X, SHORT Y)
 		g_sChar.m_bActive = false;
     }
 }
+
 void checkPause()
 {
 	if(g_abKeyPressed[K_SPACE] && pausemovement == false)

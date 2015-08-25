@@ -82,20 +82,21 @@ void checkEnd()
 	if(mapLevelno == 12)
 		g_bQuitGame = true;
 }
+void message_print()
+{
+	for(unsigned int b = 0; b < instructions.length(); ++b)
+		{
+			g_Console.writeToBuffer(b+12, 15, instructions[b], 0x0B);
+		}
+}
 void print_comments()
 {
 	if(messageshown == true)
 	{
-		for(unsigned int a = 0 ; a < str.length(); ++a)
+		for(unsigned int a = 0 ; a < str.length();++a)
 		{
 			g_Console.writeToBuffer(a+3,10, str[a],0x0C);
-			if( delay > g_dElapsedTime)
-				continue;
-			delay = g_dElapsedTime + 0.500;
 		}
-		for(unsigned int b = 0; b < instructions.length(); ++b)
-		{
-			g_Console.writeToBuffer(b+12, 15, instructions[b], 0x0B);
-		}
+		message_print();
 	}
 }

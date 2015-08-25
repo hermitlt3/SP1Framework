@@ -23,6 +23,7 @@ enum EGAMESTATES
 {
     S_SPLASHSCREEN,
     S_GAME,
+	S_RELOAD,
     S_COUNT
 };
 
@@ -54,6 +55,5 @@ void getInput();            // get input from player
 void update(double dt);     // update the game and the state of the game
 void render();              // renders the current state of the game to the console
 void shutdown();            // do clean up, free memory
-// void startMenu();
 
 #endif // _GAME_H

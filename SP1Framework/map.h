@@ -24,6 +24,8 @@ void mapReadlevel();
 void printMap();
 void checkEnd();
 void printCharacter();
+void restartmap();
+void reloadmap();
 
 
 #endif

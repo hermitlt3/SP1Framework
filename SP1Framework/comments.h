@@ -21,6 +21,6 @@ extern double g_dElapsedTime;
 void continuemsg();
 void print_comments();
 void update_comments(int i);
-
+void message_print();
 
 #endif

@@ -10,6 +10,8 @@
 #include "map.h"
 
 using  std::string;
+using std::cout;
+using std::endl;
 
 extern Console g_Console;
 extern WORD charColor;
@@ -25,12 +27,17 @@ extern SGameChar g_sEnemySix;
 extern bool pausemovement;
 extern bool printmap;
 extern double g_dElapsedTime;
+extern bool scare;
+extern bool g_abKeyPressed[K_COUNT];
+extern EGAMESTATES g_eGameState;
 
 void ENEMY_MEET();
 void ENEMY_SPAWN(int i);
 void ENEMY_ROUTE(int i);
 void ENEMY_MOVEMENT(int i);
 void ENEMY_PRINT(int i);
+void JUMP_SCARE();
+void print_Joff();
 void LOAD_ENEMY_ZERO();
 void LOAD_ENEMY_ONE();
 void LOAD_ENEMY_TWO();

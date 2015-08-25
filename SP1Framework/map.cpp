@@ -4,6 +4,7 @@ extern int MapHeight;
 extern int MapWidth;
  string maze;
  ifstream catridge;
+
  void level(int & i)
  {
 	 if ( i == 0 )
@@ -103,13 +104,19 @@ extern int MapWidth;
 		 catridge.open("finallevel.txt");
 	 }
  }
+
 void mapReadlevel()
 {
  MapHeight = 0;
  MapWidth = 0;
  g_sChar.m_cLocation.X = 0; 
  g_sChar.m_cLocation.Y = 0;
- level(mapLevelno);
+ reloadmap();
+}
+
+void reloadmap()
+{
+	level(mapLevelno);
  ENEMY_SPAWN(mapLevelno);
  for (int i = 0;i < MapHeight;++i)
 	{
@@ -135,6 +142,7 @@ void mapReadlevel()
 	}
  catridge.close();
 }
+
 void printMap()
 {
 	if(printmap == false)
@@ -150,10 +158,20 @@ void printMap()
 		}
 	}
 }
+
 void printCharacter()
 {
 	if(printmap == false)
 		return;
 	else
 		g_Console.writeToBuffer(g_sChar.m_cLocation, '0', 0x0C);
+}
+
+void restartmap()
+{
+	if(g_abKeyPressed[K_SPACE])
+	{
+		reloadmap();
+		g_eGameState = S_GAME;
+	}
 }
