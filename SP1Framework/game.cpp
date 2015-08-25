@@ -11,6 +11,7 @@
 #include "map.h"
 #include "enemy.h"
 #include "comments.h"
+//#include "jofff.h";
 
 
 #include <Windows.h>
@@ -22,8 +23,8 @@ bool g_Collision;
 bool pausemovement = false;
 bool messageshown = false;
 bool printmap = true;
-bool scare = false;
-char MAP_LEVEL[20][150];
+bool g_Scare = false;
+char MAP_LEVEL[50][150];
 int MapHeight;
 int MapWidth;
 // Game specific variables here
@@ -40,7 +41,7 @@ EGAMESTATES g_eGameState = S_SPLASHSCREEN;
 double  g_dBounceTime; // this is to prevent key bouncing, so we won't trigger keypresses more than once
 
 
-// Console object0
+// Console object
 Console g_Console(80, 50, "SP1 Framework");
 
 //--------------------------------------------------------------
@@ -123,18 +124,15 @@ void update(double dt)
     // get the delta time
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;
-	update_comments(mapLevelno);
-	ENEMY_MOVEMENT(mapLevelno);
-	ENEMY_MEET();
-	//JUMP_SCARE();
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
             break;
-        case S_GAME: gameplay(); // gameplay logic when we are in the game
-            break;
-		case S_RELOAD: restartmap();
-			break;
+        case S_GAME: gameplay(); update_comments(mapLevelno);
+	ENEMY_MOVEMENT(mapLevelno);
+	ENEMY_MEET();// gameplay logic when we are in the game
+            break;	
+		case S_RELOAD: JumpScare();
     } 
 	checkEnd();
 }
@@ -156,6 +154,7 @@ void render()
             break;
         case S_GAME: renderGame();
             break;
+		case S_RELOAD: ScareRender();
     }
     renderFramerate();  // renders debug information, frame rate, elapsed time, etc
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
@@ -304,10 +303,9 @@ void renderFramerate()
 void renderToScreen()
 {
     // Writes the buffer to the console, hence you will see what you have written
-
 	print_comments();
-	//print_Joff();
    g_Console.flushBufferToConsole();
+
 }
 
 void renderMenu()

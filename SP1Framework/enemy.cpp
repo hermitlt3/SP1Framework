@@ -7,6 +7,20 @@ bool reverse4;
 bool reverse5;
 bool reverse6;
 double velocity;
+
+void JumpScare()
+{
+	if (g_abKeyPressed[K_SPACE])
+	{
+			restartmap();
+	}
+}
+
+void ScareRender()
+{
+		joff();
+}
+
 void ENEMY_MEET()
 {
 	if (g_sChar.m_cLocation.X == g_sEnemyOne.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemyOne.m_cLocation.Y)
@@ -14,7 +28,7 @@ void ENEMY_MEET()
 
 	if (g_sChar.m_cLocation.X == g_sEnemyTwo.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemyTwo.m_cLocation.Y)
 		g_eGameState = S_RELOAD;
-
+	
 	if (g_sChar.m_cLocation.X == g_sEnemyThree.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemyThree.m_cLocation.Y)
 		g_eGameState = S_RELOAD;
 
@@ -26,28 +40,10 @@ void ENEMY_MEET()
 
 	if (g_sChar.m_cLocation.X == g_sEnemySix.m_cLocation.X && g_sChar.m_cLocation.Y == g_sEnemySix.m_cLocation.Y)
 		g_eGameState = S_RELOAD;
+		
 }
 
-/*void JUMP_SCARE()
-{
-	if(scare == true)
-	{
-		printmap = false;
-		if(scare == true && g_abKeyPressed[K_SPACE])
-		{
-			scare = false;
-			printmap = true;
-		}
-	}
-}
 
-void print_Joff()
-{
-	if(scare == true && g_abKeyPressed[K_SPACE])
-	{
-		g_Console.writeToBuffer(2,3,'O',0x11);
-	}
-}*/
 
 void ENEMY_SPAWN(int i)
 {
@@ -77,6 +73,7 @@ void ENEMY_SPAWN(int i)
 		break;
 	}
 }
+
 
 
 void LOAD_ENEMY_ZERO()

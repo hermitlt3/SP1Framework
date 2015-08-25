@@ -6,7 +6,7 @@
 #include "Framework\timer.h"
 #include "game.h"
 #include "map.h"
-extern char MAP_LEVEL[20][150];
+extern char MAP_LEVEL[50][150];
 extern SGameChar g_sChar;
 extern bool g_Collision;
 extern bool pausemovement;

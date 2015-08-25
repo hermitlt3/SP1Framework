@@ -15,7 +15,7 @@ using std::ifstream;
 extern Console g_Console;
 extern WORD charColor;
 extern int mapLevelno;
-extern char MAP_LEVEL[20][150];
+extern char MAP_LEVEL[50][150];
 extern SGameChar g_sChar;
 extern bool printmap;
 
