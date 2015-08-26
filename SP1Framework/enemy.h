@@ -28,7 +28,8 @@ extern bool g_Scare;
 extern bool printmap;
 extern double g_dElapsedTime;
 extern bool g_abKeyPressed[K_COUNT];
-extern EGAMESTATES g_eGameState;
+extern int ResPos;
+
 
 void ENEMY_MEET();
 void ENEMY_SPAWN(int i);
@@ -61,6 +62,7 @@ void LOAD_EPATH_NINE();
 void LOAD_EPATH_TEN();
 void JumpScare();
 void ScareRender();
+void ResetPos();
 
 
 #endif

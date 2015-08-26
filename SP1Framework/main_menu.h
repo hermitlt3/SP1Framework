@@ -13,10 +13,8 @@ using std::cout;
 using std::endl;
 using std::ifstream;
 
-
+extern Console g_Console;
 
 void readMenu();
-void sPage();
-void menu();
 
 #endif// _MAIN_MENU_H
