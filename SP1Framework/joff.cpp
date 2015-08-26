@@ -39,6 +39,7 @@ void joffPrint()
 {
 	if(k==1)
 	{
+		Sleep(200);
 		for (int i = 0; i < joffH; ++i)
 		{
 			for (int j = 0, k=1; j < joffW; ++j)
@@ -50,6 +51,7 @@ void joffPrint()
 	}
 	else if(k==2)
 	{
+		Sleep(200);
 		for (int i = 0; i < joffH; ++i)
 		{
 			for (int j = 0, k=1; j < joffW; ++j)
