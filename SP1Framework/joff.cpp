@@ -9,6 +9,8 @@ void joffPrint();
 extern int joffH = 44;
 extern int joffW = 80;
 char JOFF_LEVEL[50][150];
+int k=1;
+
 
 void joff()
 {
@@ -35,11 +37,26 @@ void joff()
 
 void joffPrint()
 {
-	for (int i = 0; i < joffH; ++i)
+	if(k==1)
 	{
-		for (int j = 0; j < joffW; ++j)
-		{	
-			g_Console.writeToBuffer(j, i, JOFF_LEVEL[i][j], 0xFC);
+		for (int i = 0; i < joffH; ++i)
+		{
+			for (int j = 0, k=1; j < joffW; ++j)
+			{	
+				g_Console.writeToBuffer(j, i, JOFF_LEVEL[i][j], 0xFC);			
+			}
 		}
+		k=2;
+	}
+	else if(k==2)
+	{
+		for (int i = 0; i < joffH; ++i)
+		{
+			for (int j = 0, k=1; j < joffW; ++j)
+			{	
+				g_Console.writeToBuffer(j, i, JOFF_LEVEL[i][j], 0x0C);			
+			}
+		}
+		k=1;
 	}
 }

@@ -127,7 +127,7 @@ void mapReadlevel()
  for (int i = 0;i < MapHeight;++i)
 	{
 		getline(catridge,maze);
-		for(int j = 0,a  = 0; j < MapWidth, a <maze.length(); ++j,++a)
+		for(int j = 0,a  = 0, enemyC=0; j < MapWidth, a <maze.length(); ++j,++a)
 	  {
 		  switch(maze[a])
 		  {
@@ -143,6 +143,14 @@ void mapReadlevel()
 			  break;
 		  case '\\': MAP_LEVEL[i][j] = '\\';
 			  break;
+		  /*case 'x':XenemyX[enemyC]=MapWidth,
+				   XenemyY[enemyC]=MapHeight,
+				   enemyC +=1;
+			  break;
+		  case 'y': YenemyX[enemyC]=MapWidth,
+					YenemyY[enemyC]=MapHeight,
+					enemyC +=1;
+			  break;*/
 		  }
 		}
 	}
