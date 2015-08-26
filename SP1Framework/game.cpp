@@ -8,6 +8,7 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+
 #include "map.h"
 #include "enemy.h"
 #include "comments.h"
@@ -29,6 +30,13 @@ int MapHeight;
 int MapWidth;
 // Game specific variables here
 int mapLevelno = 0;
+string line;
+string linemenu;
+ifstream myfile;
+ifstream mymenu;
+const int MenuH = 16;
+const int MenuW = 58;
+char MENU[MenuH][MenuW];
 SGameChar g_sChar;
 SGameChar g_sEnemyOne;
 SGameChar g_sEnemyTwo;
@@ -58,7 +66,10 @@ void init(void)
     g_dBounceTime = 0.0;
 
     // sets the initial state for the game
+
     g_eGameState = S_SPLASHSCREEN;
+
+    //g_eGameState = S_MENU;
     g_sChar.m_bActive = true;
 	mapReadlevel();
     // sets the width, height and the font name to use in the console
@@ -103,6 +114,7 @@ void getInput(void)
     g_abKeyPressed[K_RIGHT]  = isKeyPressed(VK_RIGHT);
     g_abKeyPressed[K_SPACE]  = isKeyPressed(VK_SPACE);
     g_abKeyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
+    g_abKeyPressed[K_RETURN] = isKeyPressed(VK_RETURN);
 }
 
 //--------------------------------------------------------------
@@ -151,6 +163,8 @@ void render()
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN: renderSplashScreen();
+            break;
+        case S_MENU: readMenu();
             break;
         case S_GAME: renderGame();
             break;
@@ -308,7 +322,100 @@ void renderToScreen()
 
 }
 
-void renderMenu()
+void readMenu()
 {
-    
+    myfile.open("fPagee.nfo");
+    if(myfile.is_open())
+    {
+        for(int currH = 0; currH < MenuH; currH++)
+        {
+            getline(myfile,line);
+            for(int currW = 0,a = 0; currW < MenuW; currW++, a++)
+            {
+                switch(line[a])
+                {
+                case 'Û':MENU[currH][currW] = 219;
+                    break;
+                case '²':MENU[currH][currW] = 178;
+                    break;
+                case 'Ü':MENU[currH][currW] = 220;
+                    break;
+                case ' ':MENU[currH][currW] = 32;
+                    break;
+                case '±':MENU[currH][currW] = 177;
+                    break;
+                case 'ß':MENU[currH][currW] = 223;
+                    break;
+                case '°':MENU[currH][currW] = 176;
+                    break;
+                case 'C':MENU[currH][currW] = 67;
+                    break;
+                case 'h':MENU[currH][currW] = 104;
+                    break;
+                case 'o':MENU[currH][currW] = 111;
+                    break;
+                case 's':MENU[currH][currW] = 115;
+                    break;
+                case 'e':MENU[currH][currW] = 101;
+                    break;
+                case 'a':MENU[currH][currW] = 97;
+                    break;
+                case 'd':MENU[currH][currW] = 100;
+                    break;
+                case 'i':MENU[currH][currW] = 105;
+                    break;
+                case 'c':MENU[currH][currW] = 99;
+                    break;
+                case 'u':MENU[currH][currW] = 117;
+                    break;
+                case 'l':MENU[currH][currW] = 108;
+                    break;
+                case 't':MENU[currH][currW] = 116;
+                    break;
+                case 'y':MENU[currH][currW] = 121;
+                    break;
+                case ')':MENU[currH][currW] = 41;
+                    break;
+                case 'E':MENU[currH][currW] = 69;
+                    break;
+                case 'N':MENU[currH][currW] = 78;
+                    break;
+                case 'H':MENU[currH][currW] = 72;
+                    break;
+                case 'r':MENU[currH][currW] = 114;
+                    break;
+                case 'm':MENU[currH][currW] = 109;
+                    break;
+                case 'b':MENU[currH][currW] = 98;
+                    break;
+                case 'f':MENU[currH][currW] = 102;
+                    break;
+                case '1':MENU[currH][currW] = 49;
+                    break;
+                case '2':MENU[currH][currW] = 50;
+                    break;
+                case '3':MENU[currH][currW] = 51;
+                    break;
+                }
+            }
+        }
+        myfile.close();
+    }
+    for(int height = 0, meow1 = 2; height <  MenuH; height++, meow1++)
+    {   for(int width = 0, mew1 = 10; width < MenuW; width++, mew1++)
+        {
+            g_Console.writeToBuffer(mew1, meow1, MENU[height][width], 0x0C);
+        }
+    }
+}
+
+//void 
+
+void startGame()
+{
+    if (g_abKeyPressed[K_RETURN])
+    {
+        g_eGameState = S_GAME;
+    }
+    processUserInput();
 }

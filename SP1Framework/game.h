@@ -15,12 +15,15 @@ enum EKEYS
     K_RIGHT,
     K_ESCAPE,
     K_SPACE,
-    K_COUNT
+    K_COUNT,
+    K_RETURN
 };
 
 // Enumeration for the different screen states
 enum EGAMESTATES
 {
+    S_MENU, // i did this
+    S_DMENU,
     S_SPLASHSCREEN,
     S_GAME,
 	S_RELOAD,
@@ -34,11 +37,6 @@ struct SGameChar
     bool  m_bActive;
 };
 
-void init        ( void );      // initialize your variables, allocate memory, etc
-void getInput    ( void );      // get input from player
-void update      ( double dt ); // update the game and the state of the game
-void render      ( void );      // renders the current state of the game to the console
-void shutdown    ( void );      // do clean up, free memory
 void splashScreenWait();    // waits for time to pass in splash screen
 void gameplay();            // gameplay logic
 void moveCharacter();       // moves the character, collision detection, physics, etc
@@ -55,5 +53,6 @@ void getInput();            // get input from player
 void update(double dt);     // update the game and the state of the game
 void render();              // renders the current state of the game to the console
 void shutdown();            // do clean up, free memory
+void startGame();
 
 #endif // _GAME_H
