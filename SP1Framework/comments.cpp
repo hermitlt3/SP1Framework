@@ -50,17 +50,11 @@ void update_comments(int i)
 	}
 	if(i == 11)
 	{
-		str = "It was fun... wasn't it? ";
+		str = "Goodbye friend. ";
 	}
 }
 
-void checkEnd()
-{
-	if(MAP_LEVEL[g_sChar.m_cLocation.Y][g_sChar.m_cLocation.X] == 'E')
-	{
-		g_eGameState = S_LEVELUP;
-	}
-}
+
 
 void MessageUpdate()
 {
@@ -70,6 +64,8 @@ void MessageUpdate()
 		  mapLevelno++;
 		  mapReadlevel();
 	}
+	if(mapLevelno == 12)
+		g_bQuitGame = true;
 }
 
 void MessageScreen()

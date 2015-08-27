@@ -17,5 +17,6 @@ void checkCollisionDown(SHORT X, SHORT Y);
 void checkCollisionLeft(SHORT X, SHORT Y);
 void checkCollisionRight(SHORT X, SHORT Y);
 void checkDoor(SHORT X, SHORT Y);
+void checkEnd();
 
 #endif

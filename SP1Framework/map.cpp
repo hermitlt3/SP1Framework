@@ -1,7 +1,7 @@
 
 #include "map.h"
-extern int MapHeight;
-extern int MapWidth;
+int MapHeight;
+int MapWidth;
  string maze;
  ifstream catridge;
 

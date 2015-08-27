@@ -16,7 +16,6 @@ extern SGameChar g_sChar;
 extern double g_dElapsedTime;
 
 void continuemsg();
-void checkEnd();
 void MessageUpdate();
 void MessageScreen();
 void update_comments(int i);

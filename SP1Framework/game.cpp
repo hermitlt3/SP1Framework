@@ -34,10 +34,9 @@ bool messageshown = false;
 bool printmap = true;
 bool g_Scare = false;
 char MAP_LEVEL[50][150];
-int MapHeight;
-int MapWidth;
+
 // Game specific variables here
-int mapLevelno = 0;
+int mapLevelno = 11;
 
 SGameChar g_sChar;
 SGameChar g_sEnemyOne;

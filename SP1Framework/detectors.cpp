@@ -47,3 +47,11 @@ void checkDoor(SHORT X, SHORT Y)
 		g_sChar.m_bActive = false;
     }
 }
+
+void checkEnd()
+{
+	if(MAP_LEVEL[g_sChar.m_cLocation.Y][g_sChar.m_cLocation.X] == 'E')
+	{
+		g_eGameState = S_LEVELUP;
+	}
+}
