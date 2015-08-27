@@ -92,29 +92,30 @@ void mapReadlevel()
 
 void reloadmap()
 {
+
 	level(mapLevelno);
- ENEMY_SPAWN(mapLevelno);
- for (int i = 0;i < MapHeight;++i)
+    ENEMY_SPAWN(mapLevelno);
+    for (int i = 0;i < MapHeight;++i)
 	{
 		getline(catridge,maze);
 		for(int j = 0,a  = 0, enemyC=0; j < MapWidth, a <maze.length(); ++j,++a)
-	  {
-		  switch(maze[a])
-		  {
-		  case'#': MAP_LEVEL[i][j] =  219;
-			  break;
-		  case' ': MAP_LEVEL[i][j] = ' ';
-			  break;
-		  case'E':  MAP_LEVEL[i][j] = 'E';
-			  break;	 
-		  case 'N' :  MAP_LEVEL[i][j] = 'N';
-			  break;
-		  case '_': MAP_LEVEL[i][j] = '_';
-			  break;
-		  case '\\': MAP_LEVEL[i][j] = '\\';
-			  break;
-		  case 'P' : g_sChar.m_cLocation.X = j; g_sChar.m_cLocation.Y = i; MAP_LEVEL[i][j] = ' ';
-			  break;
+	    {
+		    switch(maze[a])
+		    {
+		    case '#': MAP_LEVEL[i][j] =  219;
+			    break;
+		    case ' ': MAP_LEVEL[i][j] = ' ';
+			    break;
+		    case 'E': MAP_LEVEL[i][j] = 'E';
+			    break;	 
+		    case 'N': MAP_LEVEL[i][j] = 'N';
+			    break;
+		    case '_': MAP_LEVEL[i][j] = '_';
+			    break;
+		    case '\\': MAP_LEVEL[i][j] = '\\';
+			    break;
+		    case 'P' : g_sChar.m_cLocation.X = j; g_sChar.m_cLocation.Y = i; MAP_LEVEL[i][j] = ' ';
+			    break;
 		  /*case 'x':XenemyX[enemyC]=MapWidth,
 				   XenemyY[enemyC]=MapHeight,
 				   enemyC +=1;
@@ -123,10 +124,10 @@ void reloadmap()
 					YenemyY[enemyC]=MapHeight,
 					enemyC +=1;
 			  break;*/
-		  }
+		    }
 		}
 	}
- catridge.close();
+    catridge.close();
 }
 
 void printMap()
