@@ -1,17 +1,7 @@
 #include "comments.h"
-string str;
-string instructions = "Press SPACE to Continue";
-double delay;
 
-/*void continuemsg()
-{
-	if(g_abKeyPressed[K_SPACE])
-	{
-		if (delay > g_dElapsedTime)
-			return;
-		delay = g_dElapsedTime + 0.250;
-	}
-}*/
+string str;
+
 void update_comments(int i)
 {
 	if(i == 0)
@@ -63,40 +53,59 @@ void update_comments(int i)
 		str = "It was fun... wasn't it? ";
 	}
 }
+
 void checkEnd()
 {
 	if(MAP_LEVEL[g_sChar.m_cLocation.Y][g_sChar.m_cLocation.X] == 'E')
 	{
-		messageshown = true;
-		printmap = false;
-		pausemovement = true;
-		if(g_abKeyPressed[K_SPACE])
-		{
+		g_eGameState = S_LEVELUP;
+	}
+}
+
+void MessageUpdate()
+{
+	if(g_abKeyPressed[K_SPACE])
+	{
+		g_eGameState = S_GAME;
 		  mapLevelno++;
 		  mapReadlevel();
-		  messageshown = false;
-		  pausemovement = false;
-		  printmap = true;
-		}
 	}
-	if(mapLevelno == 12)
-		g_bQuitGame = true;
 }
-void message_print()
+
+void MessageScreen()
 {
-	for(unsigned int b = 0; b < instructions.length(); ++b)
-		{
-			g_Console.writeToBuffer(b+12, 15, instructions[b], 0x0B);
-		}
-}
-void print_comments()
-{
-	if(messageshown == true)
-	{
+	string instructions = "Press SPACE to Continue";
 		for(unsigned int a = 0 ; a < str.length();++a)
 		{
 			g_Console.writeToBuffer(a+3,10, str[a],0x0C);
 		}
-		message_print();
-	}
+		for(unsigned int b = 0; b < instructions.length(); ++b)
+		{
+			g_Console.writeToBuffer(b+12, 15, instructions[b], 0x0B);
+		}
 }
+
+void checkPause()
+{
+	if(g_abKeyPressed[K_ESCAPE])
+		g_eGameState = S_PAUSE;
+}
+
+void PauseUpdate()
+{
+	if(g_abKeyPressed[K_RETURN])
+		g_eGameState = S_GAME;
+	if(g_abKeyPressed[K_UP])
+		g_eGameState = S_MENU;
+}
+
+void PauseScreen()
+{
+	string pause = "Press ENTER to continue playing";
+	string exit = "Press UP ARROW KEY to exit to main menu";
+	for(unsigned int i = 0; i < pause.length(); ++i)
+		g_Console.writeToBuffer(2+i, 2, pause[i], 0x0C);
+	for(unsigned int i = 0; i < exit.length(); ++i)
+		g_Console.writeToBuffer(2+i, 4, exit[i], 0x0C);
+}
+

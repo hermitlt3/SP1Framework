@@ -23,10 +23,11 @@ enum EKEYS
 enum EGAMESTATES
 {
     S_MENU, // i did this
-    S_DMENU,
     S_SPLASHSCREEN,
     S_GAME,
 	S_RELOAD,
+	S_PAUSE,
+	S_LEVELUP,
     S_COUNT
 };
 

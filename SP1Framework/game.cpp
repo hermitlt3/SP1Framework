@@ -38,12 +38,7 @@ int MapHeight;
 int MapWidth;
 // Game specific variables here
 int mapLevelno = 0;
-string line;
-string linemenu;
-ifstream mymenu;
-const int MenuH = 16;
-const int MenuW = 58;
-char MENU[MenuH][MenuW];
+
 SGameChar g_sChar;
 SGameChar g_sEnemyOne;
 SGameChar g_sEnemyTwo;
@@ -150,18 +145,20 @@ void update(double dt)
 	update_comments(mapLevelno);
 	ENEMY_MOVEMENT(mapLevelno);
 	ENEMY_MEET();
-	JumpScare();
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
             break;
-        case S_GAME: gameplay(); update_comments(mapLevelno);
-	ENEMY_MOVEMENT(mapLevelno);
         case S_GAME: gameplay(); // gameplay logic when we are in the game
             break;
         case S_MENU: startGame();
             break;
 		case S_RELOAD: JumpScare();
+			break;
+		case S_PAUSE: PauseUpdate();
+			break;
+		case S_LEVELUP: MessageUpdate();
+			break;
     } 
 	checkEnd();
 }
@@ -186,6 +183,11 @@ void render()
         case S_GAME: renderGame();
             break;
 		case S_RELOAD: ScareRender();
+			break;
+		case S_PAUSE: PauseScreen();
+			break;
+		case S_LEVELUP: MessageScreen();
+			break;
     }
     renderFramerate();  // renders debug information, frame rate, elapsed time, etc
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
@@ -202,7 +204,10 @@ void gameplay()            // gameplay logic
 {
     processUserInput(); // checks if you should change states or do something else with the game, e.g. pause, exit
     moveCharacter();    // moves the character, collision detection, physics, etc
-                        // sound can be played here too.
+	checkEnd();
+	checkPause();
+	ENEMY_MEET();
+	ENEMY_MOVEMENT(mapLevelno);                     // sound can be played here too.
 }
 
 void moveCharacter()
@@ -263,8 +268,6 @@ void moveCharacter()
 void processUserInput()
 {
     // quits the game if player hits the escape key
-    if (g_abKeyPressed[K_ESCAPE])
-        g_bQuitGame = true;    
 }
 
 void clearScreen()
@@ -334,7 +337,6 @@ void renderFramerate()
 void renderToScreen()
 {
     // Writes the buffer to the console, hence you will see what you have written
-	print_comments();
    g_Console.flushBufferToConsole();
 
 }
@@ -344,7 +346,7 @@ void startGame()
 {
     if (g_abKeyPressed[K_RETURN])
     {
+		reloadmap();
         g_eGameState = S_GAME;
     }
-    processUserInput();
 }

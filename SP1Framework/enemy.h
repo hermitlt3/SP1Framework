@@ -62,7 +62,6 @@ void LOAD_EPATH_NINE();
 void LOAD_EPATH_TEN();
 void JumpScare();
 void ScareRender();
-void ResetPos();
 
 
 #endif

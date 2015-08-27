@@ -47,9 +47,3 @@ void checkDoor(SHORT X, SHORT Y)
 		g_sChar.m_bActive = false;
     }
 }
-
-void checkPause()
-{
-	if(g_abKeyPressed[K_SPACE] && pausemovement == false)
-		pausemovement = true;
-}

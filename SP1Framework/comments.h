@@ -14,13 +14,14 @@ extern Console g_Console;
 extern bool g_abKeyPressed[K_COUNT];
 extern SGameChar g_sChar;
 extern double g_dElapsedTime;
-extern bool messageshown;
-extern bool printmap;
-extern double g_dElapsedTime;
 
 void continuemsg();
-void print_comments();
+void checkEnd();
+void MessageUpdate();
+void MessageScreen();
 void update_comments(int i);
-void message_print();
+void checkPause();
+void PauseUpdate();
+void PauseScreen();
 
 #endif

@@ -18,6 +18,7 @@ extern int mapLevelno;
 extern char MAP_LEVEL[50][150];
 extern SGameChar g_sChar;
 extern bool printmap;
+extern EGAMESTATES g_eGameState;
 
 /*extern int XenemyX[10];
 extern int XenemyY[10];
@@ -27,10 +28,11 @@ extern int YenemyY[10];*/
 void level(int & i);
 void mapReadlevel();
 void printMap();
-void checkEnd();
 void printCharacter();
 void restartmap();
 void reloadmap();
+void PauseScreen();
+void MessageScreen();
 
 
 
