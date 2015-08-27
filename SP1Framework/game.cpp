@@ -72,9 +72,6 @@ void init(void)
 
     g_eGameState = S_MENU;
 
-
-    g_sChar.m_cLocation.X = 3;
-
     //g_eGameState = S_MENU;
     g_sChar.m_bActive = true;
 	mapReadlevel();
@@ -142,9 +139,7 @@ void update(double dt)
     // get the delta time
     g_dElapsedTime += dt;
     g_dDeltaTime = dt;
-	update_comments(mapLevelno);
-	ENEMY_MOVEMENT(mapLevelno);
-	ENEMY_MEET();
+	
     switch (g_eGameState)
     {
         case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
@@ -207,7 +202,8 @@ void gameplay()            // gameplay logic
 	checkEnd();
 	checkPause();
 	ENEMY_MEET();
-	ENEMY_MOVEMENT(mapLevelno);                     // sound can be played here too.
+	ENEMY_MOVEMENT(mapLevelno);                     // sound can be played here too. 
+	update_comments(mapLevelno);
 }
 
 void moveCharacter()
