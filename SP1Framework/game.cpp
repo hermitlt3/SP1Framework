@@ -190,7 +190,7 @@ void render()
 
 void splashScreenWait()    // waits for time to pass in splash screen
 {
-    if (g_dElapsedTime > 0.0) // wait for 3 seconds to switch to game mode, else do nothing
+    if (g_dElapsedTime > 5.0) // wait for 5 seconds to switch to game mode, else do nothing
         g_eGameState = S_GAME;
 }
 
@@ -277,13 +277,13 @@ void renderSplashScreen()  // renders the splash screen
     COORD c = g_Console.getConsoleSize();
     c.Y /= 3;
     c.X = c.X / 2 - 9;
-    g_Console.writeToBuffer(c, "A game in 3 seconds", 0x03);
+    g_Console.writeToBuffer(c, "Arrow Keys to move", 0x0C);
     c.Y += 1;
-    c.X = g_Console.getConsoleSize().X / 2 - 20;
-    g_Console.writeToBuffer(c, "Press <Space> to change character colour", 0x09);
+    c.X = g_Console.getConsoleSize().X / 2 - 13;
+    g_Console.writeToBuffer(c, "Press <Space> to interact", 0x0C);
     c.Y += 1;
-    c.X = g_Console.getConsoleSize().X / 2 - 9;
-    g_Console.writeToBuffer(c, "Press 'Esc' to quit", 0x09);
+    c.X = g_Console.getConsoleSize().X / 2 - 10;
+    g_Console.writeToBuffer(c, "Press 'Esc' to pause", 0x0C);
 }
 
 void renderGame()
@@ -342,7 +342,7 @@ void startGame()
 {
     if (g_abKeyPressed[K_RETURN])
     {
-		reloadmap();
-        g_eGameState = S_GAME;
+		 g_eGameState = S_SPLASHSCREEN;
+       
     }
 }
