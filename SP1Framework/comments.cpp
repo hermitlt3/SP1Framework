@@ -4,53 +4,30 @@ string str;
 
 void update_comments(int i)
 {
-	if(i == 0)
+	switch(i)
 	{
-		str = "Remember the times...";
-	}
-	if(i == 1)
-	{
-		str = "... On the swing? ";
-	}
-	if(i == 2)
-	{
-		str = "It was fun... wasn't it? ";
-	}
-	if(i == 3)
-	{
-		str = "We were only kids... so young... and you already killed someone.";
-	}
-	if(i == 4)
-	{
-		str = "Do you remember? That someone...";
-	}
-	if(i == 5)
-	{
-		str = "was me... ";
-	}
-	if(i == 6)
-	{
-		str = "How long has it been since u last killed... me?";
-	}
-	if(i == 7)
-	{
-		str = "The guilt must have been haunting you...";
-	}
-	if(i == 8)
-	{
-		str = "It's okay... ";
-	}
-	if(i == 9)
-	{
-		str = "I'm not angry...";
-	}
-	if(i == 10)
-	{
-		str = "It wasn't your fault... ";
-	}
-	if(i == 11)
-	{
-		str = "Goodbye friend. ";
+	case 0: str = "Remember the times...";
+		break;
+	case 1: str = "... On the swing? ";
+		break;
+	case 2: str = "It was fun... wasn't it? ";
+		break;
+	case 3: str = "We were only kids... so young... and you already killed someone.";
+		break;
+	case 4: str ="Do you remember? That someone...";
+		break;
+	case 5: str = "was me... ";
+		break;
+	case 6: str = "How long has it been since u last killed... me?";
+		break;
+	case 7: str = "The guilt must have been haunting you...";
+		break;
+	case 8: str = "It's okay... ";
+		break;
+	case 9: str = "I'm not angry...";
+		break;
+	case 10: str = "It wasn't your fault... ";
+		break;
 	}
 }
 

@@ -36,7 +36,7 @@ bool g_Scare = false;
 char MAP_LEVEL[50][150];
 
 // Game specific variables here
-int mapLevelno = 11;
+int mapLevelno = 0;
 
 SGameChar g_sChar;
 SGameChar g_sEnemyOne;
@@ -189,7 +189,7 @@ void render()
 
 void splashScreenWait()    // waits for time to pass in splash screen
 {
-    if (g_dElapsedTime > 5.0) // wait for 5 seconds to switch to game mode, else do nothing
+    if (g_dElapsedTime > 1.0) // wait for 5 seconds to switch to game mode, else do nothing
         g_eGameState = S_GAME;
 }
 
