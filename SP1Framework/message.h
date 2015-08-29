@@ -1,5 +1,5 @@
-#ifndef _COMMENTS_H_
-#define _COMMENTS_H_
+#ifndef _MESSAGE_H_
+#define _MESSAGE_H_
 
 #include "Framework\timer.h"
 #include "game.h"
@@ -19,8 +19,6 @@ void continuemsg();
 void MessageUpdate();
 void MessageScreen();
 void update_comments(int i);
-void checkPause();
-void PauseUpdate();
-void PauseScreen();
+
 
 #endif

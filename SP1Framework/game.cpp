@@ -1,17 +1,19 @@
 // This is the main file for the game logic and function
 //
 //
-#include "game.h"
-#include "detectors.h"
-#include "Framework\console.h"
-#include "main_menu.h"
+
 #include <iostream>
 #include <iomanip>
 #include <sstream>
 
+#include "game.h"
+#include "detectors.h"
+#include "Framework\console.h"
+#include "main_menu.h"
 #include "map.h"
 #include "enemy.h"
-#include "comments.h"
+#include "message.h"
+#include "pause.h"
 
 
 
@@ -39,12 +41,6 @@ char MAP_LEVEL[50][150];
 int mapLevelno = 0;
 
 SGameChar g_sChar;
-SGameChar g_sEnemyOne;
-SGameChar g_sEnemyTwo;
-SGameChar g_sEnemyThree;
-SGameChar g_sEnemyFour;
-SGameChar g_sEnemyFive;
-SGameChar g_sEnemySix;
 
 //EGAMESTATES g_eGameState = S_SPLASHSCREEN;
 EGAMESTATES g_eGameState = S_MENU;
@@ -200,8 +196,9 @@ void gameplay()            // gameplay logic
     moveCharacter();    // moves the character, collision detection, physics, etc
 	checkEnd();
 	checkPause();
+	ENEMY_COLLISION();
 	ENEMY_MEET();
-	ENEMY_MOVEMENT(mapLevelno);                     // sound can be played here too. 
+	//ENEMY_MOVEMENT(mapLevelno);                     // sound can be played here too. 
 	update_comments(mapLevelno);
 }
 
@@ -308,7 +305,7 @@ void renderCharacter()
 
     WORD charColor = 0x0C;
 	printCharacter();
-	ENEMY_PRINT(mapLevelno);
+	ENEMY_PRINT();
 }
 
 void renderFramerate()

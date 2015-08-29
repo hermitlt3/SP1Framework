@@ -78,7 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="detectors.cpp" />
-    <ClCompile Include="comments.cpp" />
+    <ClCompile Include="message.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="joff.cpp" />
     <ClCompile Include="map.cpp" />
@@ -87,10 +87,11 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_menu.cpp" />
+    <ClCompile Include="pause.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="detectors.h" />
-    <ClInclude Include="comments.h" />
+    <ClInclude Include="message.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="jofff.h" />
     <ClInclude Include="map.h" />
@@ -98,6 +99,7 @@
     <ClInclude Include="Framework\timer.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="main_menu.h" />
+    <ClInclude Include="pause.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

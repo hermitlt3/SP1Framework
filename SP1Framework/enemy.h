@@ -9,6 +9,7 @@
 #include <fstream>
 #include "map.h"
 #include "jofff.h"
+#include "detectors.h"
 
 using  std::string;
 
@@ -16,13 +17,7 @@ extern Console g_Console;
 extern WORD charColor;
 extern int mapLevelno;
 extern char MAZE_LEVEL_ZERO[20][150];
-extern SGameChar g_sChar;
-extern SGameChar g_sEnemyOne;
-extern SGameChar g_sEnemyTwo;
-extern SGameChar g_sEnemyThree;
-extern SGameChar g_sEnemyFour;
-extern SGameChar g_sEnemyFive;
-extern SGameChar g_sEnemySix;
+
 extern bool pausemovement;
 extern bool g_Scare;
 extern bool printmap;
@@ -31,7 +26,7 @@ extern bool g_abKeyPressed[K_COUNT];
 extern int ResPos;
 
 
-//void ENEMY_MEET();
+void ENEMY_MEET();
 //void ENEMY_SPAWN(int i);
 //void ENEMY_ROUTE(int i);
 //void ENEMY_MOVEMENT(int i);
@@ -60,8 +55,13 @@ extern int ResPos;
 //void LOAD_EPATH_EIGHT();
 //void LOAD_EPATH_NINE();
 //void LOAD_EPATH_TEN();
+
+void ENEMY_SPAWN_H(int x, int y, int i);
+void ENEMY_SPAWN_V(int x, int y, int i);
 void JumpScare();
 void ScareRender();
-
-
+void ENEMY_PRINT();
+void ENEMY_COLLISION();
+void UPMOVE(int i);
+void RIGHTMOVE(int i);
 #endif
