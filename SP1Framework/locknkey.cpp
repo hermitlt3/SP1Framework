@@ -1,7 +1,9 @@
 #include "locknkey.h"
 extern int numK;
 extern int numD;
-extern bool Unlocked[10];
+extern bool UnlockedD[10];
+extern bool CollectedK[10];
+
 struct KEY
 {
 	COORD KEYS[10];
@@ -29,11 +31,15 @@ void UNLOCKKEY(int x, int y, int z)
 }
 void UNLOCK_UPDATE()
 {
-	for(int i = 0; i < numK; ++i)
+	for(int i = 0, j = 0; i < numD, j < numK; ++i, ++j)
 	{
-		if(Unlocked[i] == true)
+		if(UnlockedD[i] == true)
 		{
 			MAP_LEVEL[DOOR_S.DOORS[i].Y][DOOR_S.DOORS[i].X] = ' '; 
+		}
+		if(CollectedK[j] == true)
+		{
+			MAP_LEVEL[KEY_S.KEYS[i].Y][KEY_S.KEYS[i].X] = ' '; 
 		}
 	}
 }
@@ -41,7 +47,7 @@ void KEY_RENDER()
 {
 	for(int i = 0; i < numK; ++i)
 	{
-		if(Unlocked[i] == false)
+		if(CollectedK[i] == false)
 		{
 			g_Console.writeToBuffer(KEY_S.KEYS[i].X,KEY_S.KEYS[i].Y,'K',0x0B);
 		}
@@ -53,11 +59,11 @@ void UNLOCKEDDOOR(int i, SHORT X, SHORT Y)
 	{
 	case 0: DOORZERO(X,Y);
 		break;
-/*	case 1: DOORONE(X,Y);
+	case 1: DOORONE(X,Y);
 		break;
-	case 2: DOORTWO(X,Y);
+	case 2: DOORONE(X,Y);
 		break;
-	case 3: DOORTHREE(X,Y);
+/*	case 3: DOORTHREE(X,Y);
 		break;
 	case 4: DOORFOUR(X,Y);
 		break;*/
@@ -68,7 +74,7 @@ void RENDER_KD()
 {
 	for(int i = 0; i < numD; ++i)
 	{
-		if(Unlocked[i] == false)
+		if(UnlockedD[i] == false)
 			g_Console.writeToBuffer(DOOR_S.DOORS[i].X,DOOR_S.DOORS[i].Y,219,0x0B);
 	}
 }
@@ -77,7 +83,35 @@ void DOORZERO(SHORT X, SHORT Y)
 {
 	if(X == KEY_S.KEYS[0].X && Y == KEY_S.KEYS[0].Y)
 	{
-		MAP_LEVEL[Y][X] = ' ';
-		Unlocked[0] = true;
+		CollectedK[0] = true;
+		UnlockedD[0] = true;
+	}
+}
+
+void DOORONE(SHORT X, SHORT Y)
+{
+	if(X == KEY_S.KEYS[1].X && Y == KEY_S.KEYS[1].Y)
+	{
+		CollectedK[1] = true;
+		UnlockedD[0] = true;
+	}
+	if(X == KEY_S.KEYS[0].X && Y == KEY_S.KEYS[0].Y)
+	{
+		CollectedK[0] = true;
+		UnlockedD[1] = true;
+	}
+}
+
+void DOORTWO(SHORT X, SHORT Y)
+{
+	if(X == KEY_S.KEYS[1].X && Y == KEY_S.KEYS[1].Y)
+	{
+		CollectedK[1] = true;
+		UnlockedD[0] = true;
+	}
+	if(X == KEY_S.KEYS[0].X && Y == KEY_S.KEYS[0].Y)
+	{
+		CollectedK[0] = true;
+		UnlockedD[1] = true;
 	}
 }

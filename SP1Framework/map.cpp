@@ -10,7 +10,8 @@ int MapWidth;
  int numD = 0;
  bool Reverse_H[50];
  bool Reverse_V[50];
- bool Unlocked[10];
+ bool UnlockedD[10];
+ bool CollectedK[10];
 
 
  void level(int  i)
@@ -79,9 +80,9 @@ void reloadmap()
 				break;
 			case 'Y': ENEMY_SPAWN_V(j,i,numV); Reverse_V[numV] = false; numV++; MAP_LEVEL[i][j] = ' ';
 				break;
-			case 'D': LOCKDOOR(j,i,numD); Unlocked[numD] = false; numD++; MAP_LEVEL[i][j] = 219;
+			case 'D': LOCKDOOR(j,i,numD); UnlockedD[numD] = false; numD++; MAP_LEVEL[i][j] = 219;
 				break;
-			case 'T': UNLOCKKEY(j,i,numK); /*CollectedK[numK] = false; */numK++; MAP_LEVEL[i][j] = ' ';
+			case 'T': UNLOCKKEY(j,i,numK); CollectedK[numK] = false; numK++; MAP_LEVEL[i][j] = ' ';
 				break;
 		    }
 		}

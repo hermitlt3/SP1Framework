@@ -38,7 +38,7 @@ bool g_Scare = false;
 char MAP_LEVEL[50][150];
 
 // Game specific variables here
-int mapLevelno = 0;
+int mapLevelno = 2;
 
 SGameChar g_sChar;
 
@@ -295,6 +295,7 @@ void renderMap()
     clearScreen();// clear previous screen
 	printMap(); //prints the map
 	RENDER_KD(); //for the locked doors
+	KEY_RENDER(); //for the keys
     colour(0x0F);
     cls();
 
