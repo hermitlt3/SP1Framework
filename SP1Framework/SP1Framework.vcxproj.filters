@@ -34,6 +34,9 @@
     <ClCompile Include="pause.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="locknkey.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game.h">
@@ -64,6 +67,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pause.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="locknkey.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,12 +4,16 @@ int MapHeight;
 int MapWidth;
  string maze;
  ifstream catridge;
- int enemyno = 0;
  int numH = 0;
  int numV = 0;
+ int numK = 0;
+ int numD = 0;
  bool Reverse_H[50];
  bool Reverse_V[50];
- void level(int & i)
+ bool Unlocked[10];
+
+
+ void level(int  i)
  {
 	 switch(i)
 	 {
@@ -21,19 +25,19 @@ int MapWidth;
 		 break;
 	 case 3: catridge.open("level3.txt"); MapHeight = 15; MapWidth = 60;
 		 break;
-	 case 4: catridge.open("level4.txt"); MapHeight = 10; MapWidth = 60;
+	 case 4: catridge.open("level4.txt"); MapHeight = 16; MapWidth = 60;
 		 break;
-	 case 5: catridge.open("level5.txt"); MapHeight = 12; MapWidth = 60;
+	 case 5: catridge.open("level5.txt"); MapHeight = 17; MapWidth = 60;
 		 break;
-	 case 6: catridge.open("level6.txt"); MapHeight = 14; MapWidth = 60;
+	 case 6: catridge.open("level6.txt"); MapHeight = 17; MapWidth = 60;
 		 break;
-	 case 7: catridge.open("level7.txt"); MapHeight = 16; MapWidth = 60;
+	 case 7: catridge.open("level7.txt"); MapHeight = 19; MapWidth = 60;
 		 break;
-	 case 8: catridge.open("level8.txt"); MapHeight = 18; MapWidth = 60;
+	 case 8: catridge.open("level8.txt"); MapHeight = 19; MapWidth = 60;
 		 break;
-	 case 9: catridge.open("level9.txt"); MapHeight = 18; MapWidth = 65;
+	 case 9: catridge.open("level9.txt"); MapHeight = 21; MapWidth = 67;
 		 break;
-	 case 10: catridge.open("level10.txt"); MapHeight = 20; MapWidth = 67;
+	 case 10: catridge.open("level10.txt"); MapHeight = 21; MapWidth = 67;
 		 break;
 	 }
  }
@@ -47,11 +51,8 @@ void reloadmap()
 {
 	numH = 0;
 	numV = 0;
-	for(int i = 0; i < 15; ++i)
-	{
-		Reverse_H[i] = false;
-		Reverse_V[i] = false;
-	}
+	numK = 0;
+	numD = 0;
 	level(mapLevelno);
     for (int i = 0;i < MapHeight;++i)
 	{
@@ -78,7 +79,9 @@ void reloadmap()
 				break;
 			case 'Y': ENEMY_SPAWN_V(j,i,numV); Reverse_V[numV] = false; numV++; MAP_LEVEL[i][j] = ' ';
 				break;
-			case 'D': /*LOCKDOOR(j,i,numK); */MAP_LEVEL[i][j] = ' ';
+			case 'D': LOCKDOOR(j,i,numD); Unlocked[numD] = false; numD++; MAP_LEVEL[i][j] = 219;
+				break;
+			case 'T': UNLOCKKEY(j,i,numK); /*CollectedK[numK] = false; */numK++; MAP_LEVEL[i][j] = ' ';
 				break;
 		    }
 		}
@@ -92,14 +95,14 @@ void printMap()
 	    {
 		    for(int j = 0; j < MapWidth; ++j)
 		    {	
-				g_Console.writeToBuffer(j,i, MAP_LEVEL[i][j],0x0F);
+				g_Console.writeToBuffer(j,i, MAP_LEVEL[i][j],0x07);
 			}
 		}
 }
 
 void printCharacter()
 {
-		g_Console.writeToBuffer(g_sChar.m_cLocation, '0', 0x0C);
+		g_Console.writeToBuffer(g_sChar.m_cLocation, '0', 0x0A);
 }
 
 void restartmap()

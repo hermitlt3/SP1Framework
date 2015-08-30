@@ -78,6 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="detectors.cpp" />
+    <ClCompile Include="locknkey.cpp" />
     <ClCompile Include="message.cpp" />
     <ClCompile Include="enemy.cpp" />
     <ClCompile Include="joff.cpp" />
@@ -91,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="detectors.h" />
+    <ClInclude Include="locknkey.h" />
     <ClInclude Include="message.h" />
     <ClInclude Include="enemy.h" />
     <ClInclude Include="jofff.h" />

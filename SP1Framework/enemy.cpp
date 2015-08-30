@@ -1,11 +1,5 @@
 #include "enemy.h"
-//int a = 0;
-//bool reverse1;
-//bool reverse2;
-//bool reverse3;
-//bool reverse4;
-//bool reverse5;
-//bool reverse6;
+
 double velocity;
 extern int numH;
 extern int numV;

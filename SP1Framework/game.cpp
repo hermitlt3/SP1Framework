@@ -67,7 +67,6 @@ void init(void)
 
     g_eGameState = S_MENU;
 
-    //g_eGameState = S_MENU;
     g_sChar.m_bActive = true;
 	mapReadlevel();
     // sets the width, height and the font name to use in the console
@@ -198,7 +197,8 @@ void gameplay()            // gameplay logic
 	checkPause();
 	ENEMY_COLLISION();
 	ENEMY_MEET();
-	//ENEMY_MOVEMENT(mapLevelno);                     // sound can be played here too. 
+	UNLOCKEDDOOR(mapLevelno, g_sChar.m_cLocation.X, g_sChar.m_cLocation.Y);
+	UNLOCK_UPDATE();// sound can be played here too. 
 	update_comments(mapLevelno);
 }
 
@@ -250,6 +250,7 @@ void moveCharacter()
         bSomethingHappened = true;
     }
 	checkDoor(g_sChar.m_cLocation.X, g_sChar.m_cLocation.Y);
+	
     if (bSomethingHappened)
     {
         // set the bounce time to some time in the future to prevent accidental triggers
@@ -291,8 +292,9 @@ void renderGame()
 void renderMap()
 {
    
-    // clear previous screen
-	printMap();
+    clearScreen();// clear previous screen
+	printMap(); //prints the map
+	RENDER_KD(); //for the locked doors
     colour(0x0F);
     cls();
 

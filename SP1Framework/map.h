@@ -8,6 +8,7 @@
 #include <string>
 #include <fstream>
 #include "enemy.h"
+#include "locknkey.h"
 
 using  std::string;
 using std::ifstream;
@@ -25,7 +26,7 @@ extern int XenemyY[10];
 extern int YenemyX[10];
 extern int YenemyY[10];*/
 
-void level(int & i);
+void level(int  i);
 void mapReadlevel();
 void printMap();
 void printCharacter();
