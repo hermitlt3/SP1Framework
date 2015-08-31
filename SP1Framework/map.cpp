@@ -26,7 +26,7 @@ int MapWidth;
 		 break;
 	 case 3: catridge.open("level3.txt"); MapHeight = 15; MapWidth = 60;
 		 break;
-	 case 4: catridge.open("level4.txt"); MapHeight = 16; MapWidth = 60;
+	 case 4: catridge.open("level4.txt"); MapHeight = 15; MapWidth = 60;
 		 break;
 	 case 5: catridge.open("level5.txt"); MapHeight = 17; MapWidth = 60;
 		 break;
@@ -39,6 +39,8 @@ int MapWidth;
 	 case 9: catridge.open("level9.txt"); MapHeight = 21; MapWidth = 67;
 		 break;
 	 case 10: catridge.open("level10.txt"); MapHeight = 21; MapWidth = 67;
+		 break;
+	 case 11: catridge.open("finallevel.txt"); MapHeight = 7; MapWidth = 73;
 		 break;
 	 }
  }
@@ -58,11 +60,12 @@ void reloadmap()
     for (int i = 0;i < MapHeight;++i)
 	{
 		getline(catridge,maze);
-		for(int j = 0,a  = 0; j < MapWidth, a <maze.length(); ++j,++a)
+		unsigned int a = 0;
+		for(int j = 0; j < MapWidth, a <maze.length(); ++j,++a)
 	    {
 		    switch(maze[a])
 		    {
-		    case '#': MAP_LEVEL[i][j] =  219;
+		    case '#': MAP_LEVEL[i][j] =  char(219);
 			    break;
 		    case ' ': MAP_LEVEL[i][j] = ' ';
 			    break;
@@ -80,7 +83,7 @@ void reloadmap()
 				break;
 			case 'Y': ENEMY_SPAWN_V(j,i,numV); Reverse_V[numV] = false; numV++; MAP_LEVEL[i][j] = ' ';
 				break;
-			case 'D': LOCKDOOR(j,i,numD); UnlockedD[numD] = false; numD++; MAP_LEVEL[i][j] = 219;
+			case 'D': LOCKDOOR(j,i,numD); UnlockedD[numD] = false; numD++; MAP_LEVEL[i][j] = char(219);
 				break;
 			case 'T': UNLOCKKEY(j,i,numK); CollectedK[numK] = false; numK++; MAP_LEVEL[i][j] = ' ';
 				break;

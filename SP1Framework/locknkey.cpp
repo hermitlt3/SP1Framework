@@ -65,8 +65,20 @@ void UNLOCKEDDOOR(int i, SHORT X, SHORT Y)
 		break;
 	case 3: DOORTWO(X,Y);
 		break;
-	/*case 4: DOORFOUR(X,Y);
-		break;*/
+	case 4: DOORZERO(X,Y);
+		break;
+	case 5: DOORTWO(X,Y);
+		break;
+	case 6: DOORONE(X,Y);
+		break;
+	case 7: DOORZERO(X,Y);
+		break;
+	case 8: DOORZERO(X,Y);
+		break;
+	case 9: DOORONE(X,Y);
+		break;
+	case 10: DOORTWO(X,Y);
+		break;
 	}
 }
 

@@ -38,7 +38,7 @@ bool g_Scare = false;
 char MAP_LEVEL[50][150];
 
 // Game specific variables here
-int mapLevelno = 3;
+int mapLevelno = 10;
 
 SGameChar g_sChar;
 
@@ -196,7 +196,7 @@ void gameplay()            // gameplay logic
 	checkEnd();
 	checkPause();
 	ENEMY_COLLISION();
-	ENEMY_MEET();
+	//ENEMY_MEET();
 	UNLOCKEDDOOR(mapLevelno, g_sChar.m_cLocation.X, g_sChar.m_cLocation.Y);
 	UNLOCK_UPDATE();// sound can be played here too. 
 	update_comments(mapLevelno);
