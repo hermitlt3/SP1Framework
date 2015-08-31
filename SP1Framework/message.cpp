@@ -1,4 +1,6 @@
 #include "message.h"
+#include "Score.h"
+
 
 string str;
 
@@ -40,7 +42,8 @@ void MessageUpdate()
 		  mapReadlevel();
 	}
 	if(mapLevelno == 12)
-		g_bQuitGame = true;
+		ScoreStart = true;
+		
 }
 
 void MessageScreen()

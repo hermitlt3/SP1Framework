@@ -5,6 +5,7 @@
 
 extern CStopWatch g_swTimer;
 extern bool g_bQuitGame;
+extern double  g_dElapsedTime;
 
 // Enumeration to store the control keys that the game will have
 enum EKEYS

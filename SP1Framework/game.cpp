@@ -14,7 +14,8 @@
 #include "enemy.h"
 #include "message.h"
 #include "pause.h"
-
+#include "Framework\timer.h"
+#include "Score.h"
 
 
 #include <Windows.h>
@@ -27,7 +28,7 @@ using  std::string;
 using std::ifstream;
 
 
-double  g_dElapsedTime;
+
 double  g_dDeltaTime;
 bool g_abKeyPressed[K_COUNT];
 bool g_Collision;
@@ -65,6 +66,7 @@ void init(void)
     // sets the initial state for the game
 
     g_eGameState = S_MENU;
+	//TimerInit=true;
 
     g_sChar.m_bActive = true;
 	mapReadlevel();
@@ -322,11 +324,11 @@ void renderFramerate()
     g_Console.writeToBuffer(c, ss.str());
 
     // displays the elapsed time
-   /*ss.str("");
-    ss << g_dElapsedTime << "secs";
+    ss.str("");
+    ss << g_dElapsedTime << "secs have passed";
     c.X = 0;
     c.Y = 0;
-    g_Console.writeToBuffer(c, ss.str(), 0x59)*/
+    g_Console.writeToBuffer(c, ss.str(), 0x59);
 }
 void renderToScreen()
 {
