@@ -63,9 +63,9 @@ void UNLOCKEDDOOR(int i, SHORT X, SHORT Y)
 		break;
 	case 2: DOORONE(X,Y);
 		break;
-/*	case 3: DOORTHREE(X,Y);
+	case 3: DOORTWO(X,Y);
 		break;
-	case 4: DOORFOUR(X,Y);
+	/*case 4: DOORFOUR(X,Y);
 		break;*/
 	}
 }
@@ -104,14 +104,14 @@ void DOORONE(SHORT X, SHORT Y)
 
 void DOORTWO(SHORT X, SHORT Y)
 {
-	if(X == KEY_S.KEYS[1].X && Y == KEY_S.KEYS[1].Y)
-	{
-		CollectedK[1] = true;
-		UnlockedD[0] = true;
-	}
 	if(X == KEY_S.KEYS[0].X && Y == KEY_S.KEYS[0].Y)
 	{
 		CollectedK[0] = true;
+		UnlockedD[0] = true;
+	}
+	if(X == KEY_S.KEYS[1].X && Y == KEY_S.KEYS[1].Y)
+	{
+		CollectedK[1] = true;
 		UnlockedD[1] = true;
 	}
 }

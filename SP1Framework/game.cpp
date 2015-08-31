@@ -38,7 +38,7 @@ bool g_Scare = false;
 char MAP_LEVEL[50][150];
 
 // Game specific variables here
-int mapLevelno = 2;
+int mapLevelno = 3;
 
 SGameChar g_sChar;
 
