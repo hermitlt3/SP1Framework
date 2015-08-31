@@ -70,7 +70,7 @@ void readMenu()
         myfile.close();
     }
     for(int height = 0, meow1 = 2; height <  MenuH; height++, meow1++)
-    {   for(int width = 0, mew1 = 10; width < MenuW; width++, mew1++)
+    {   for(int width = 0, mew1 = 21; width < MenuW; width++, mew1++)
         {
             g_Console.writeToBuffer(mew1, meow1, MENU[height][width], 0x0C);
         }

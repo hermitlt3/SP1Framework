@@ -96,7 +96,7 @@ void ENEMY_PRINT()
 	for(int i = 0; i < numH; ++i)
 		g_Console.writeToBuffer(H_ENEMY.ENEMY[i].X, H_ENEMY.ENEMY[i].Y, 'X', 0x0C);
 	for(int i = 0; i < numV; ++i)
-		g_Console.writeToBuffer(V_ENEMY.ENEMY[i].X, V_ENEMY.ENEMY[i].Y, 'Y', 0x0C);
+		g_Console.writeToBuffer(V_ENEMY.ENEMY[i].X, V_ENEMY.ENEMY[i].Y, 'Y', 0x0D);
 }
 
 void ENEMY_MEET()

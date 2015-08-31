@@ -38,7 +38,7 @@ bool g_Scare = false;
 char MAP_LEVEL[50][150];
 
 // Game specific variables here
-int mapLevelno = 3;
+int mapLevelno = 10;
 
 SGameChar g_sChar;
 
@@ -48,7 +48,7 @@ double  g_dBounceTime; // this is to prevent key bouncing, so we won't trigger k
 
 
 // Console object
-Console g_Console(80, 50, "SP1 Framework");
+Console g_Console(100, 50, "SP1 Framework");
 
 //--------------------------------------------------------------
 // Purpose  : Initialisation function
