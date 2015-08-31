@@ -18,27 +18,27 @@ int MapWidth;
  {
 	 switch(i)
 	 {
-	 case 0: catridge.open("level0.txt"); MapHeight = 7; MapWidth = 60;
+	 case 0: catridge.open("level0.txt"); MapHeight = 10; MapWidth = 78;
 		 break;
-	 case 1: catridge.open("level1.txt"); MapHeight = 15; MapWidth = 60;
+	 case 1: catridge.open("level1.txt"); MapHeight = 18; MapWidth = 78;
 		 break;
-	 case 2: catridge.open("level2.txt"); MapHeight = 15; MapWidth = 60;
+	 case 2: catridge.open("level2.txt"); MapHeight = 18; MapWidth = 78;
 		 break;
-	 case 3: catridge.open("level3.txt"); MapHeight = 15; MapWidth = 60;
+	 case 3: catridge.open("level3.txt"); MapHeight = 18; MapWidth = 78;
 		 break;
-	 case 4: catridge.open("level4.txt"); MapHeight = 15; MapWidth = 60;
+	 case 4: catridge.open("level4.txt"); MapHeight = 18; MapWidth = 78;
 		 break;
-	 case 5: catridge.open("level5.txt"); MapHeight = 17; MapWidth = 60;
+	 case 5: catridge.open("level5.txt"); MapHeight = 20; MapWidth = 78;
 		 break;
-	 case 6: catridge.open("level6.txt"); MapHeight = 17; MapWidth = 60;
+	 case 6: catridge.open("level6.txt"); MapHeight = 20; MapWidth = 78;
 		 break;
-	 case 7: catridge.open("level7.txt"); MapHeight = 19; MapWidth = 60;
+	 case 7: catridge.open("level7.txt"); MapHeight = 22; MapWidth = 78;
 		 break;
-	 case 8: catridge.open("level8.txt"); MapHeight = 19; MapWidth = 60;
+	 case 8: catridge.open("level8.txt"); MapHeight = 22; MapWidth = 78;
 		 break;
-	 case 9: catridge.open("level9.txt"); MapHeight = 21; MapWidth = 67;
+	 case 9: catridge.open("level9.txt"); MapHeight = 24; MapWidth = 85;
 		 break;
-	 case 10: catridge.open("level10.txt"); MapHeight = 21; MapWidth = 67;
+	 case 10: catridge.open("level10.txt"); MapHeight = 24; MapWidth = 84;
 		 break;
 	 case 11: catridge.open("finallevel.txt"); MapHeight = 7; MapWidth = 73;
 		 break;
@@ -117,4 +117,3 @@ void restartmap()
 		g_eGameState = S_GAME;
 	}
 }
-
