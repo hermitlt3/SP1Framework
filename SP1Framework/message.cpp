@@ -28,10 +28,10 @@ void update_comments(int i)
 		break;
 	case 10: str = "It wasn't your fault... ";
 		break;
+	case 11: str = "Goodbye, friend.";
+		break;
 	}
 }
-
-
 
 void MessageUpdate()
 {
@@ -42,7 +42,7 @@ void MessageUpdate()
 		  mapReadlevel();
 	}
 	if(mapLevelno == 12)
-		g_bQuitGame = true;
+		g_bQuitGame = true;//g_eGameState = S_GAMEEND;
 }
 
 void MessageScreen()
@@ -58,4 +58,3 @@ void MessageScreen()
 			g_Console.writeToBuffer(b+16, 15, instructions[b], 0x0B);
 		}
 }
-

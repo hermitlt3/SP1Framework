@@ -9,7 +9,6 @@
 extern char MAP_LEVEL[50][150];
 extern SGameChar g_sChar;
 extern bool g_Collision;
-extern bool pausemovement;
 extern bool g_abKeyPressed[K_COUNT];
 
 void checkCollisionUp(SHORT X, SHORT Y);

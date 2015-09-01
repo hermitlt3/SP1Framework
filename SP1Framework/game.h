@@ -47,7 +47,6 @@ void renderSplashScreen();  // renders the splash screen
 void renderGame();          // renders the game stuff
 void renderMap();           // renders the map to the buffer first
 void renderCharacter();     // renders the character into the buffer
-void renderFramerate();     // renders debug information, frame rate, elapsed time, etc
 void renderToScreen();      // dump the contents of the buffer to the screen, one frame worth of game
 void init();                // initialize your variables, allocate memory, etc
 void getInput();            // get input from player

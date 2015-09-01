@@ -26,19 +26,14 @@
 using  std::string;
 using std::ifstream;
 
-
 double  g_dElapsedTime;
 double  g_dDeltaTime;
 bool g_abKeyPressed[K_COUNT];
 bool g_Collision;
-bool pausemovement = false;
-bool messageshown = false;
-bool printmap = true;
-bool g_Scare = false;
 char MAP_LEVEL[50][150];
 
 // Game specific variables here
-int mapLevelno = 10;
+int mapLevelno = 0;
 
 SGameChar g_sChar;
 
@@ -148,8 +143,9 @@ void update(double dt)
 			break;
 		case S_LEVELUP: MessageUpdate();
 			break;
+		/*case S_GAMEEND:
+			break;*/
     } 
-	checkEnd();
 }
 //--------------------------------------------------------------
 // Purpose  : Render function is to update the console screen
@@ -177,15 +173,18 @@ void render()
 			break;
 		case S_LEVELUP: MessageScreen();
 			break;
+	/*	case S_GAMEEND:
+			break;*/
     }
-    renderFramerate();  // renders debug information, frame rate, elapsed time, etc
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
 }
 
 void splashScreenWait()    // waits for time to pass in splash screen
 {
-    if (g_dElapsedTime > 1.0) // wait for 5 seconds to switch to game mode, else do nothing
+    if (g_abKeyPressed[K_SPACE]) // wait for 5 seconds to switch to game mode, else do nothing
+	{
         g_eGameState = S_GAME;
+	}
 }
 
 
@@ -196,7 +195,7 @@ void gameplay()            // gameplay logic
 	checkEnd();
 	checkPause();
 	ENEMY_COLLISION();
-	//ENEMY_MEET();
+	ENEMY_MEET();
 	UNLOCKEDDOOR(mapLevelno, g_sChar.m_cLocation.X, g_sChar.m_cLocation.Y);
 	UNLOCK_UPDATE();// sound can be played here too. 
 	update_comments(mapLevelno);
@@ -205,8 +204,6 @@ void gameplay()            // gameplay logic
 void moveCharacter()
 {
     bool bSomethingHappened = false;
-	if (pausemovement == true)
-		return;
     if (g_dBounceTime > g_dElapsedTime)
         return;
     // Updating the location of the character based on the key press
@@ -298,7 +295,6 @@ void renderMap()
 	KEY_RENDER(); //for the keys
     colour(0x0F);
     cls();
-
     //render the game
 }
 
@@ -311,24 +307,6 @@ void renderCharacter()
 	ENEMY_PRINT();
 }
 
-void renderFramerate()
-{
-    COORD c;
-    // displays the framerate
-    std::ostringstream ss;
-    ss << std::fixed << std::setprecision(3);
-    ss << 1.0 / g_dDeltaTime << "fps";
-    c.X = g_Console.getConsoleSize().X - 9;
-    c.Y = 0;
-    g_Console.writeToBuffer(c, ss.str());
-
-    // displays the elapsed time
-   /*ss.str("");
-    ss << g_dElapsedTime << "secs";
-    c.X = 0;
-    c.Y = 0;
-    g_Console.writeToBuffer(c, ss.str(), 0x59)*/
-}
 void renderToScreen()
 {
     // Writes the buffer to the console, hence you will see what you have written

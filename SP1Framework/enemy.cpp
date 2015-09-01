@@ -101,15 +101,14 @@ void ENEMY_PRINT()
 
 void ENEMY_MEET()
 {
-	for(int i = 0; i < numH; ++i)
-	{
-		if(H_ENEMY.ENEMY[i].X == g_sChar.m_cLocation.X && H_ENEMY.ENEMY[i].Y == g_sChar.m_cLocation.Y)
-			g_eGameState = S_RELOAD;
-	}
-	for(int j = 0;  j < numV; ++j)
-	{
-		if(V_ENEMY.ENEMY[j].X == g_sChar.m_cLocation.X && V_ENEMY.ENEMY[j].Y == g_sChar.m_cLocation.Y)
-			g_eGameState = S_RELOAD;
-	}
+		for(int i = 0; i < numH; ++i)
+		{
+			if(H_ENEMY.ENEMY[i].X == g_sChar.m_cLocation.X && H_ENEMY.ENEMY[i].Y == g_sChar.m_cLocation.Y)
+				g_eGameState = S_RELOAD;
+		}
+		for(int j = 0;  j < numV; ++j)
+		{
+			if(V_ENEMY.ENEMY[j].X == g_sChar.m_cLocation.X && V_ENEMY.ENEMY[j].Y == g_sChar.m_cLocation.Y)
+				g_eGameState = S_RELOAD;
+		}
 }
-

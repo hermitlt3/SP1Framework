@@ -87,7 +87,7 @@ void RENDER_KD()
 	for(int i = 0; i < numD; ++i)
 	{
 		if(UnlockedD[i] == false)
-			g_Console.writeToBuffer(DOOR_S.DOORS[i].X,DOOR_S.DOORS[i].Y,219,0x0B);
+			g_Console.writeToBuffer(DOOR_S.DOORS[i].X,DOOR_S.DOORS[i].Y,char(219),0x0B);
 	}
 }
 

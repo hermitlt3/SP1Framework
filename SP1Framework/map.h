@@ -18,7 +18,6 @@ extern WORD charColor;
 extern int mapLevelno;
 extern char MAP_LEVEL[50][150];
 extern SGameChar g_sChar;
-extern bool printmap;
 extern EGAMESTATES g_eGameState;
 
 /*extern int XenemyX[10];

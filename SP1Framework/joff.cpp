@@ -20,7 +20,8 @@ void joff()
 		for (int i = 0;i < joffH;++i)
 		{
 			getline(swaggy, jtk);
-			for (int j = 0, a = 0; j < joffH, a < jtk.length(); ++j, ++a)
+			unsigned int a = 0;
+			for (int j = 0; j < joffH, a < jtk.length(); ++j, ++a)
 			{
 				JOFF_LEVEL[i][j] = jtk[a];
 			}
@@ -58,6 +59,6 @@ void joffPrint()
 		k=1;
 	}
 	string S_RESUME = "Press SPACE to restart level";
-	for(int i = 0; i < S_RESUME.length(); ++i)
+	for(unsigned int i = 0; i < S_RESUME.length(); ++i)
 		g_Console.writeToBuffer(36+i, 47,  S_RESUME[i], 0x0C);
 }
