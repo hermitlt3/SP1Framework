@@ -22,10 +22,10 @@ void PauseScreen()
 	string exit = "Press UP ARROW KEY to exit to main menu";
     string quit = "Press DOWN ARROW KEY to exit the game";
 	for(unsigned int i = 0; i < pause.length(); ++i)
-		g_Console.writeToBuffer(2+i, 2, pause[i], 0x0C);
+		g_Console.writeToBuffer(36+i, 20, pause[i], 0x0C);
 	for(unsigned int i = 0; i < exit.length(); ++i)
-		g_Console.writeToBuffer(2+i, 4, exit[i], 0x0C);
+		g_Console.writeToBuffer(32+i, 22, exit[i], 0x0C);
     for(unsigned int i = 0; i < quit.length(); ++i)
-        g_Console.writeToBuffer(2+i, 6, quit[i], 0x0C);
+        g_Console.writeToBuffer(33+i, 24, quit[i], 0x0C);
 }
 

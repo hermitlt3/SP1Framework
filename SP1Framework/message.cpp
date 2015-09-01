@@ -14,7 +14,7 @@ void update_comments(int i)
 		break;
 	case 3: str = "We were only kids... so young... and you already killed someone.";
 		break;
-	case 4: str ="Do you remember? That someone...";
+	case 4: str = "Do you remember? That someone...";
 		break;
 	case 5: str = "was me... ";
 		break;
@@ -30,8 +30,6 @@ void update_comments(int i)
 		break;
 	}
 }
-
-
 
 void MessageUpdate()
 {
@@ -49,13 +47,15 @@ void MessageScreen()
 {
     COORD c = g_Console.getConsoleSize();
 	string instructions = "Press SPACE to Continue";
-		for(unsigned int a = 0 ; a < str.length();++a)
+
+    
+        for(unsigned int a = 0 ; a < str.length();++a)
 		{
-			g_Console.writeToBuffer(a+10,10, str[a],0x0C);
-		}
+            g_Console.writeToBuffer(a+40,21, str[a],0x0C);
+        }
 		for(unsigned int b = 0; b < instructions.length(); ++b)
 		{
-			g_Console.writeToBuffer(b+16, 15, instructions[b], 0x0B);
+			g_Console.writeToBuffer(b+39, 26, instructions[b], 0x0B);
 		}
 }
 

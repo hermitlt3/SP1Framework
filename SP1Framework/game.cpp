@@ -38,11 +38,10 @@ bool g_Scare = false;
 char MAP_LEVEL[50][150];
 
 // Game specific variables here
-int mapLevelno = 10;
+int mapLevelno = 0;
 
 SGameChar g_sChar;
 
-//EGAMESTATES g_eGameState = S_SPLASHSCREEN;
 EGAMESTATES g_eGameState = S_MENU;
 double  g_dBounceTime; // this is to prevent key bouncing, so we won't trigger keypresses more than once
 
@@ -184,7 +183,7 @@ void render()
 
 void splashScreenWait()    // waits for time to pass in splash screen
 {
-    if (g_dElapsedTime > 1.0) // wait for 5 seconds to switch to game mode, else do nothing
+    if (g_dElapsedTime > 4.0) // wait for 4 seconds to switch to game mode, else do nothing
         g_eGameState = S_GAME;
 }
 

@@ -2,7 +2,7 @@
 
 ifstream myfile;
 string line;
-const int MenuH = 12;
+const int MenuH = 13;
 const int MenuW = 58;
 char MENU[MenuH][MenuW];
 
