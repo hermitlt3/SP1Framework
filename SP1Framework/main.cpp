@@ -20,10 +20,8 @@ void mainLoop( void );
 // You should not be modifying this unless you know what you are doing
 int main( void )
 {   
-	PlaySound(TEXT("TheNights.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
-    //readMenu();
 	init();      // initialize your variables
-    mainLoop();  // main loop
+	mainLoop();  // main loop
     shutdown();  // do clean up, if any. free memory.
     return 0;
 }

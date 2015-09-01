@@ -1,6 +1,8 @@
     
 #include "jofff.h"
 #include "Framework\console.h"
+#include "game.h"
+#include "PlayBGM.h"
 
 extern int joffH = 44;
 extern int joffW = 80;
@@ -12,7 +14,6 @@ void joff()
 {
 	string jtk;
 	ifstream swaggy;
-	
 
    swaggy.open("joff3.nfo");
       if(swaggy.is_open())
@@ -25,12 +26,13 @@ void joff()
 			{
 				JOFF_LEVEL[i][j] = jtk[a];
 			}
-				
 		}
     }
-	  swaggy.close();
+	  swaggy.close();	
 	  joffPrint();
+	  Play2();
 }
+
 
 void joffPrint()
 {

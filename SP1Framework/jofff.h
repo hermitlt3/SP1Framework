@@ -7,6 +7,7 @@
 #include <conio.h>
 #include <stdio.h>
 #include "enemy.h"
+#include <windows.h>
 
 using std::string;
 using std::cout;

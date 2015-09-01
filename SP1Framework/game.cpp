@@ -14,6 +14,7 @@
 #include "enemy.h"
 #include "message.h"
 #include "pause.h"
+#include "PlayBGM.h"
 #include "Framework\timer.h"
 #include "Score.h"
 
@@ -67,6 +68,7 @@ void init(void)
 	mapReadlevel();
     // sets the width, height and the font name to use in the console
     g_Console.setConsoleFont(0, 16, L"Consolas");
+	Play();
 }
 
 
@@ -86,6 +88,7 @@ void shutdown()
     colour(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 
     g_Console.clearBuffer();
+	DeleteEngine();
 }
 
 //--------------------------------------------------------------

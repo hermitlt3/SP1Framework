@@ -3,6 +3,7 @@ extern int numK;
 extern int numD;
 extern bool UnlockedD[10];
 extern bool CollectedK[10];
+//extern bool messageshown;
 
 struct KEY
 {
@@ -97,6 +98,7 @@ void DOORZERO(SHORT X, SHORT Y)
 	{
 		CollectedK[0] = true;
 		UnlockedD[0] = true;
+		//messageshown = true;
 	}
 }
 
@@ -126,4 +128,11 @@ void DOORTWO(SHORT X, SHORT Y)
 		CollectedK[1] = true;
 		UnlockedD[1] = true;
 	}
+}
+
+void wait ( float seconds ) 
+{ 
+  clock_t endwait; 
+  endwait = clock () + seconds * CLOCKS_PER_SEC ; 
+  while (clock() < endwait) {} 
 }

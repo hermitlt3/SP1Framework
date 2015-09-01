@@ -4,12 +4,14 @@
 #include "Framework\timer.h"
 #include <windows.h>
 #include <mmsystem.h>
-
+#include "../include/irrKlang.h"
 extern CStopWatch g_swTimer;
 extern bool g_bQuitGame;
 extern double  g_dElapsedTime;
 
+using namespace irrklang;
 
+#pragma comment(lib, "../lib/Win32-visualStudio/irrKlang.lib") // link with irrKlang.dll
 // Enumeration to store the control keys that the game will have
 enum EKEYS
 {
@@ -50,13 +52,15 @@ void clearScreen();         // clears the current screen and draw from scratch
 void renderGame();          // renders the game stuff
 void renderMap();           // renders the map to the buffer first
 void renderCharacter();     // renders the character into the buffer
-void renderToScreen();      // dump the contents of the buffer to the screen, one frame worth of game
+void renderToScreen();      // dump the contenttt                     s of the buffer to the screen, one frame worth of game
 void init();                // initialize your variables, allocate memory, etc
 void getInput();            // get input from player
 void update(double dt);     // update the game and the state of the game
+void renderFramerate();
 void render();              // renders the current state of the game to the console
 void shutdown();            // do clean up, free memory
 void startGame();
 void renderFramerate();
+
 
 #endif // _GAME_H

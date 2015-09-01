@@ -10,7 +10,7 @@
 #include "enemy.h"
 #include "locknkey.h"
 
-using  std::string;
+using std::string;
 using std::ifstream;
 
 extern Console g_Console;
