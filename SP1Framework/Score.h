@@ -2,8 +2,10 @@
 #ifndef _SCORE_H
 #define _SCORE_H
 
+
 #include "game.h"
 #include "Framework\timer.h"
+#include "enemy.h"
 #include <string>
 #include <sstream>
 #include <fstream>

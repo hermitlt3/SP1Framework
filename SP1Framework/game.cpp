@@ -29,6 +29,7 @@ using std::ifstream;
 
 
 
+double g_dElapsedTime;
 double  g_dDeltaTime;
 bool g_abKeyPressed[K_COUNT];
 bool g_Collision;

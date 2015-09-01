@@ -1,5 +1,8 @@
 #include "Score.h"
 
+string ScoreTime;
+bool ScoreStart;
+
 void ScoreDetect()
 {
 	if(ScoreStart == true)
