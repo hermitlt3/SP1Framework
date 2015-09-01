@@ -44,7 +44,13 @@ void MessageUpdate()
 		  mapReadlevel();
 	}
 	if(mapLevelno == 12)
-		g_bQuitGame = true;//g_eGameState = S_GAMEEND;
+	{
+		ScoreStart = true;
+	}
+	else
+	{
+		ScoreStart=false;
+	}
 }
 
 void MessageScreen()
