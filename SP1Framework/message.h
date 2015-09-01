@@ -1,5 +1,6 @@
 #ifndef _MESSAGE_H_
 #define _MESSAGE_H_
+#pragma once
 
 #include "Framework\timer.h"
 #include "game.h"
@@ -7,6 +8,7 @@
 #include "map.h"
 #include <iostream>
 #include <string>
+#include "pause.h"
 
 using std::string;
 

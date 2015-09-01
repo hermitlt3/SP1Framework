@@ -14,7 +14,8 @@
 #include "enemy.h"
 #include "message.h"
 #include "pause.h"
-
+#include "Framework\timer.h"
+#include "Score.h"
 
 
 #include <Windows.h>
@@ -37,7 +38,6 @@ int mapLevelno = 0;
 
 SGameChar g_sChar;
 
-//EGAMESTATES g_eGameState = S_SPLASHSCREEN;
 EGAMESTATES g_eGameState = S_MENU;
 double  g_dBounceTime; // this is to prevent key bouncing, so we won't trigger keypresses more than once
 
@@ -61,6 +61,7 @@ void init(void)
     // sets the initial state for the game
 
     g_eGameState = S_MENU;
+	//TimerInit=true;
 
     g_sChar.m_bActive = true;
 	mapReadlevel();
@@ -307,6 +308,24 @@ void renderCharacter()
 	ENEMY_PRINT();
 }
 
+void renderFramerate()
+{
+    COORD c;
+    // displays the framerate
+    std::ostringstream ss;
+    ss << std::fixed << std::setprecision(3);
+    ss << 1.0 / g_dDeltaTime << "fps";
+    c.X = g_Console.getConsoleSize().X - 9;
+    c.Y = 0;
+    g_Console.writeToBuffer(c, ss.str());
+
+    // displays the elapsed time
+    ss.str("");
+    ss << g_dElapsedTime << "secs have passed";
+    c.X = 0;
+    c.Y = 0;
+    g_Console.writeToBuffer(c, ss.str(), 0x59);
+}
 void renderToScreen()
 {
     // Writes the buffer to the console, hence you will see what you have written
