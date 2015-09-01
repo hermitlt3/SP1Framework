@@ -50,15 +50,15 @@ void MessageScreen()
 {
     COORD c = g_Console.getConsoleSize();
 	string instructions = "Press SPACE to Continue";
-
     
-        for(unsigned int a = 0 ; a < str.length();++a)
-		{
-            g_Console.writeToBuffer(a+40,21, str[a],0x0C);
-        }
-		for(unsigned int b = 0; b < instructions.length(); ++b)
-		{
-			g_Console.writeToBuffer(b+39, 26, instructions[b], 0x0B);
-		}
+    for(unsigned int a = 0 ; a < str.length();++a)
+	{
+        g_Console.writeToBuffer(a+39,21, str[a],0x0C);
+    }
+    
+	for(unsigned int b = 0; b < instructions.length(); ++b)
+	{
+		g_Console.writeToBuffer(b+39, 26, instructions[b], 0x0B);
+	}
 }
 
