@@ -16,5 +16,6 @@ using std::ifstream;
 extern Console g_Console;
 
 void readMenu();
+void renderSplashScreen();
 
 #endif// _MAIN_MENU_H

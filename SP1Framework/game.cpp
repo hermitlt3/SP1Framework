@@ -144,8 +144,6 @@ void update(double dt)
 			break;
 		case S_LEVELUP: MessageUpdate();
 			break;
-		/*case S_GAMEEND:
-			break;*/
     } 
 }
 //--------------------------------------------------------------
@@ -174,8 +172,6 @@ void render()
 			break;
 		case S_LEVELUP: MessageScreen();
 			break;
-	/*	case S_GAMEEND:
-			break;*/
     }
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
 }
@@ -208,11 +204,9 @@ void moveCharacter()
     if (g_dBounceTime > g_dElapsedTime)
         return;
     // Updating the location of the character based on the key press
-    // providing a beep sound whenver we shift the character
 
     if (g_abKeyPressed[K_UP] && g_sChar.m_cLocation.Y > 0)
 	{
-		 //Beep(1440, 30);
 		bSomethingHappened = true;
 		checkCollisionUp(g_sChar.m_cLocation.X, g_sChar.m_cLocation.Y);
 		if(g_Collision == false)
@@ -220,7 +214,6 @@ void moveCharacter()
     }
     if (g_abKeyPressed[K_LEFT] && g_sChar.m_cLocation.X > 0)
     {
-        //Beep(1440, 30);
 		bSomethingHappened = true;
 		checkCollisionLeft(g_sChar.m_cLocation.X, g_sChar.m_cLocation.Y);
 		if(g_Collision == false)
@@ -228,7 +221,6 @@ void moveCharacter()
     }
     if (g_abKeyPressed[K_DOWN] && g_sChar.m_cLocation.Y < g_Console.getConsoleSize().Y - 1)
     {
-        //Beep(1440, 30);
 		bSomethingHappened = true;
 		checkCollisionDown(g_sChar.m_cLocation.X, g_sChar.m_cLocation.Y);
 		if(g_Collision == false)
@@ -236,7 +228,6 @@ void moveCharacter()
     }
     if (g_abKeyPressed[K_RIGHT] && g_sChar.m_cLocation.X < g_Console.getConsoleSize().X - 1)
     {
-        //Beep(1440, 30);
 		bSomethingHappened = true;
 		checkCollisionRight(g_sChar.m_cLocation.X, g_sChar.m_cLocation.Y);
 		if(g_Collision == false)
@@ -267,19 +258,6 @@ void clearScreen()
     g_Console.clearBuffer(0x0F);
 }
 
-void renderSplashScreen()  // renders the splash screen
-{
-    COORD c = g_Console.getConsoleSize();
-    c.Y /= 3;
-    c.X = c.X / 2 - 9;
-    g_Console.writeToBuffer(c, "Arrow Keys to move", 0x0C);
-    c.Y += 1;
-    c.X = g_Console.getConsoleSize().X / 2 - 13;
-    g_Console.writeToBuffer(c, "Press <Space> to interact", 0x0C);
-    c.Y += 1;
-    c.X = g_Console.getConsoleSize().X / 2 - 10;
-    g_Console.writeToBuffer(c, "Press 'Esc' to pause", 0x0C);
-}
 
 void renderGame()
 {
