@@ -16,7 +16,6 @@ void Play2()
 
 	engine->play2D("../media/0knock.wav", false); 
 }
-
 void DeleteEngine()
 {
 	engine->drop();
