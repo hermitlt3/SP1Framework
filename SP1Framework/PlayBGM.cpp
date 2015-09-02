@@ -14,7 +14,7 @@ void Play2()
 	if (engine ->isCurrentlyPlaying ("../media/0knock.wav"))
 	return;
 
-	engine->play2D("../media/0knock.wav", false);
+	engine->play2D("../media/0knock.wav", false); 
 }
 
 void DeleteEngine()

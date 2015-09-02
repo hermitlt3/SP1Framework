@@ -7,5 +7,5 @@
 void Play();
 void Play2();
 
-void DeleteEngine();
+void DeleteEngine(); 
 #endif // _PLAYBGM_H
