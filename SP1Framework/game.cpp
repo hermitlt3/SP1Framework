@@ -147,6 +147,8 @@ void update(double dt)
 			break;
 		case S_LEVELUP: MessageUpdate();
 			break;
+		/*case S_GAMEEND:
+			break;*/
     } 
 }
 //--------------------------------------------------------------

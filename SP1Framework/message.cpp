@@ -45,11 +45,7 @@ void MessageUpdate()
 	}
 	if(mapLevelno == 12)
 	{
-		ScoreStart = true;
-	}
-	else
-	{
-		ScoreStart=false;
+		g_eGameState = S_GAMEEND;
 	}
 }
 
