@@ -9,11 +9,14 @@ extern double g_dDeltaTime;
 const int EndH = 14;
 const int EndW = 79;
 char END[EndH][EndW];
-double x;
+void EndScreenUpdate()
+{
+	if(g_abKeyPressed[K_RETURN])
+		g_eGameState = S_GAMEEND;
+}
+
 void EndScreen()
 {
-	x = g_dDeltaTime;
-	TimeKeep = x;
     endgame.open("EndGameScreen.txt");
     if(endgame.is_open())
     {
@@ -35,11 +38,16 @@ void EndScreen()
 			g_Console.writeToBuffer(10+width, 2+height, END[height][width], 0x0C);
 		}
 	}
+	
 	string laststatement1 = "Congratulations, you finished the maze.";
 	for(unsigned int i = 0; i < laststatement1.length(); ++i)
 		g_Console.writeToBuffer(30+i, 18, laststatement1[i], 0x0B);
 	std::ostringstream endy;
+	std::ostringstream endz;
 	endy.str("");
-	endy << "The time you took to escape was:" << TimeKeep<<" "<<g_dElapsedTime;
+	endy << "The time you took to escape was:" <<g_dElapsedTime;
 		g_Console.writeToBuffer(30, 19, endy.str(), 0x0B);
+	endz.str("");
+	endz << "Press ENTER to continue.";
+	    g_Console.writeToBuffer(40, 21, endz.str(), 0x0B);
 }

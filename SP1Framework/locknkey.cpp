@@ -129,10 +129,3 @@ void DOORTWO(SHORT X, SHORT Y)
 		UnlockedD[1] = true;
 	}
 }
-
-void wait ( float seconds ) 
-{ 
-  clock_t endwait; 
-  endwait = clock () + seconds * CLOCKS_PER_SEC ; 
-  while (clock() < endwait) {} 
-}

@@ -129,8 +129,11 @@ void getInput(void)
 void update(double dt)
 {
     // get the delta time
-    g_dElapsedTime += dt;
-    g_dDeltaTime = dt;
+	if(mapLevelno!= 12)
+	{
+		g_dElapsedTime += dt;
+		g_dDeltaTime = dt;
+	}
 	
     switch (g_eGameState)
     {
@@ -146,7 +149,7 @@ void update(double dt)
 			break;
 		case S_LEVELUP: MessageUpdate();
 			break;
-		//case S_ENDSCREEN: EndScreen();
+		case S_ENDSCREEN: EndScreenUpdate();
 			//break;
     } 
 }

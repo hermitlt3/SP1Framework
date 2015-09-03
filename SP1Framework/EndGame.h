@@ -14,5 +14,6 @@ using std::ifstream;
 using std::string;
 
 void EndScreen();
+void EndScreenUpdate();
 
 #endif
