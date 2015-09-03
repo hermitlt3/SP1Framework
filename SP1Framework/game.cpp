@@ -28,7 +28,7 @@
 
 using  std::string;
 using std::ifstream;
-
+extern int MapHeight;
 double  g_dElapsedTime;
 double  g_dDeltaTime;
 bool g_abKeyPressed[K_COUNT];
@@ -252,7 +252,7 @@ void moveCharacter()
     if (bSomethingHappened)
     {
         // set the bounce time to some time in the future to prevent accidental triggers
-        g_dBounceTime = g_dElapsedTime + 0.000; // 125ms should be enough
+        g_dBounceTime = g_dElapsedTime + 0.125; // 125ms should be enough
     }
 }
 
@@ -273,6 +273,7 @@ void renderGame()
     renderMap();        // renders the map to the buffer first
     renderCharacter();  // renders the character into the buffer
 	renderFramerate();
+	renderInstructions();
 }
 
 void renderMap()
@@ -309,10 +310,8 @@ void renderFramerate()
 
     // displays the elapsed time
     ss.str("");
-    ss << g_dElapsedTime << "secs have passed";
-    c.X = 0;
-    c.Y = 0;
-    g_Console.writeToBuffer(c, ss.str(), 0x0F);
+    ss << g_dElapsedTime << "secs have passed.";
+    g_Console.writeToBuffer(37,MapHeight+1, ss.str(), 0x0F);
 }
 void renderToScreen()
 {
@@ -329,4 +328,28 @@ void startGame()
 		 g_eGameState = S_SPLASHSCREEN;
        
     }
+}
+
+void renderInstructions()
+{
+	std::ostringstream a;
+	a.str("");
+	a<< "Arrow keys to move.";
+	std::ostringstream b;
+	b.str("");
+	b << "X and Y are your enemies. Avoid them.";
+	std::ostringstream c;
+	c.str("");
+	c<< "K are keys you need to collect.";
+	std::ostringstream d;
+	d.str("");
+	d << char(219) << " are doors you can't passed through without collecting the keys.";
+	std::ostringstream e;
+	e.str("");
+	e << "\\ are doors you can open by pressing Space.";
+	g_Console.writeToBuffer(39,MapHeight+2,a.str(), 0x0A);
+	g_Console.writeToBuffer(29,MapHeight+3,b.str(), 0x0D);
+	g_Console.writeToBuffer(32,MapHeight+4,c.str(), 0x0C);
+	g_Console.writeToBuffer(16,MapHeight+5,d.str(), 0x0B);
+	g_Console.writeToBuffer(26,MapHeight+6,e.str(), 0x0E);
 }
