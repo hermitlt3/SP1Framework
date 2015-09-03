@@ -80,6 +80,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="detectors.cpp" />
+    <ClCompile Include="EndGame.cpp" />
     <ClCompile Include="PlayBGM.cpp" />
     <ClCompile Include="locknkey.cpp" />
     <ClCompile Include="message.cpp" />
@@ -96,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="detectors.h" />
+    <ClInclude Include="EndGame.h" />
     <ClInclude Include="irrKlang.h" />
     <ClInclude Include="PlayBGM.h" />
     <ClInclude Include="locknkey.h" />

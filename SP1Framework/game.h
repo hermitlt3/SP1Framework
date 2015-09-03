@@ -35,7 +35,8 @@ enum EGAMESTATES
 	S_PAUSE,
 	S_LEVELUP,
 	S_GAMEEND,
-    S_COUNT
+    S_COUNT,
+    S_ENDSCREEN
 };
 
 // struct for the game character

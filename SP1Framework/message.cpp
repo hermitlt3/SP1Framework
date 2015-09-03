@@ -40,10 +40,14 @@ void MessageUpdate()
 	if(g_abKeyPressed[K_SPACE])
 	{
 		g_eGameState = S_GAME;
-		  mapLevelno++;
-		  mapReadlevel();
+		mapLevelno++;
+		mapReadlevel();
 	}
-	if(mapLevelno == 12)
+    if(mapLevelno == 12)
+    {
+        g_eGameState = S_ENDSCREEN;
+    }
+	if(mapLevelno == 13)
 	{
 		g_eGameState = S_GAMEEND;
 	}

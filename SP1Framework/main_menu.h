@@ -9,8 +9,6 @@
 #include "Framework\console.h"
 
 using std::string;
-using std::cout;
-using std::endl;
 using std::ifstream;
 
 extern Console g_Console;

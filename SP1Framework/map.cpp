@@ -1,5 +1,6 @@
 
 #include "map.h"
+#include "EndGame.h"
 int MapHeight;
 int MapWidth;
  string maze;
@@ -42,6 +43,8 @@ int MapWidth;
 		 break;
 	 case 11: catridge.open("finallevel.txt"); MapHeight = 7; MapWidth = 73;
 		 break;
+     case 12: EndScreen();
+         break;
 	 }
  }
 

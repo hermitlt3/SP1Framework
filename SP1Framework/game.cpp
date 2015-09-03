@@ -17,6 +17,7 @@
 #include "PlayBGM.h"
 #include "Framework\timer.h"
 #include "Score.h"
+#include "EndGame.h"
 
 
 #include <Windows.h>
@@ -35,7 +36,7 @@ bool g_Collision;
 char MAP_LEVEL[50][150];
 
 // Game specific variables here
-int mapLevelno = 0;
+int mapLevelno = 11;
 
 SGameChar g_sChar;
 
@@ -72,8 +73,6 @@ void init(void)
 }
 
 
- 
-// g_Console.writeToBuffer(g_cWalls, '#',0xA2);
 //--------------------------------------------------------------
 // Purpose  : Reset before exiting the program
 //            Do your clean up of memory here
@@ -147,8 +146,6 @@ void update(double dt)
 			break;
 		case S_LEVELUP: MessageUpdate();
 			break;
-		/*case S_GAMEEND:
-			break;*/
     } 
 }
 //--------------------------------------------------------------
@@ -177,6 +174,8 @@ void render()
 			break;
 		case S_LEVELUP: MessageScreen();
 			break;
+        case S_ENDSCREEN: EndScreen();
+            break;
     }
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
 }
