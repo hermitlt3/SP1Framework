@@ -42,7 +42,7 @@ int MapWidth;
 		 break;
 	 case 10: catridge.open("level10.txt"); MapHeight = 24; MapWidth = 84;
 		 break;
-	 case 11: catridge.open("finallevel.txt"); MapHeight = 7; MapWidth = 73;
+	 case 11: catridge.open("finallevel.txt"); MapHeight = 11; MapWidth = 95;
 		 break; 
 	 }
  }
