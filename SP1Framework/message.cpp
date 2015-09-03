@@ -20,7 +20,7 @@ void update_comments(int i)
 		break;
 	case 5: str = "was me... ";
 		break;
-	case 6: str = "How long has it been since u last killed... me?";
+	case 6: str = "How long has it been since u killed... me?";
 		break;
 	case 7: str = "The guilt must have been haunting you...";
 		break;
