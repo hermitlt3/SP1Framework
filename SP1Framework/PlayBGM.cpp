@@ -11,10 +11,10 @@ void Play()
 
 void Play2()
 {	
-	if (engine ->isCurrentlyPlaying ("../media/0knock.wav"))
+	if (engine ->isCurrentlyPlaying ("../media/female_scream.wav"))
 	return;
 
-	engine->play2D("../media/0knock.wav", false); 
+	engine->play2D("../media/female_scream.wav", false); 
 }
 void DeleteEngine()
 {

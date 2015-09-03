@@ -36,7 +36,7 @@ bool g_Collision;
 char MAP_LEVEL[50][150];
 
 // Game specific variables here
-int mapLevelno = 11;
+int mapLevelno = 0;
 
 SGameChar g_sChar;
 
