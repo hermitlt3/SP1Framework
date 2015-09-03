@@ -36,7 +36,7 @@ bool g_Collision;
 char MAP_LEVEL[50][150];
 
 // Game specific variables here
-int mapLevelno = 0;
+int mapLevelno = 11;
 
 SGameChar g_sChar;
 
@@ -150,7 +150,7 @@ void update(double dt)
 		case S_LEVELUP: MessageUpdate();
 			break;
 		case S_ENDSCREEN: EndScreenUpdate();
-			//break;
+			break;
     } 
 }
 //--------------------------------------------------------------
@@ -181,6 +181,8 @@ void render()
 			break;
         case S_ENDSCREEN: EndScreen();
             break;
+	    case S_GAMEEND: ScoreDetect();
+			break;
     }
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
 }

@@ -30,7 +30,7 @@ void update_comments(int i)
 		break;
 	case 10: str = "It wasn't your fault... ";
 		break;
-	case 11: str = "Goodbye, friend.";
+	case 11: str = "Goodbye my friend...";
 		break;
 	}
 }
