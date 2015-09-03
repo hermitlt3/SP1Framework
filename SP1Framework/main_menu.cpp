@@ -76,21 +76,3 @@ void readMenu()
         }
     }
 }
-
-void renderSplashScreen()  // renders the splash screen
-{
-    COORD c = g_Console.getConsoleSize();
-    c.Y /= 3;
-    c.X = c.X / 2 - 9;
-    g_Console.writeToBuffer(c, "Arrow Keys to move", 0x0C);
-    c.Y += 1;
-    c.X = g_Console.getConsoleSize().X / 2 - 13;
-    g_Console.writeToBuffer(c, "Press <Space> to interact", 0x0C);
-    c.Y += 1;
-    c.X = g_Console.getConsoleSize().X / 2 - 10;
-    g_Console.writeToBuffer(c, "Press 'Esc' to pause", 0x0C);
-    c.Y += 5;
-    c.X = g_Console.getConsoleSize().X / 2 - 21;
-    g_Console.writeToBuffer(c, "Press <Space> now to continue to the game", 0x0B);
-
-}

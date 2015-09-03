@@ -68,7 +68,7 @@ void init(void)
     g_sChar.m_bActive = true;
 	mapReadlevel();
     // sets the width, height and the font name to use in the console
-    g_Console.setConsoleFont(0, 16, L"Consolas");
+    g_Console.setConsoleFont(0, 20, L"Consolas");
 	Play();
 }
 
@@ -137,8 +137,6 @@ void update(double dt)
 	
     switch (g_eGameState)
     {
-        case S_SPLASHSCREEN : splashScreenWait(); // game logic for the splash screen
-            break;
         case S_GAME: gameplay(); // gameplay logic when we are in the game
             break;
         case S_MENU: startGame();
@@ -167,8 +165,6 @@ void render()
     clearScreen();      // clears the current screen and draw from scratch 
     switch (g_eGameState)
     {
-        case S_SPLASHSCREEN: renderSplashScreen();
-            break;
         case S_MENU: readMenu();
             break;
         case S_GAME: renderGame();
@@ -186,15 +182,6 @@ void render()
     }
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
 }
-
-void splashScreenWait()    // waits for time to pass in splash screen
-{
-    if (g_abKeyPressed[K_SPACE]) // wait for 5 seconds to switch to game mode, else do nothing
-	{
-        g_eGameState = S_GAME;
-	}
-}
-
 
 void gameplay()            // gameplay logic
 {
@@ -327,7 +314,7 @@ void startGame()
 {
     if (g_abKeyPressed[K_RETURN])
     {
-		 g_eGameState = S_SPLASHSCREEN;
+		 g_eGameState = S_GAME;
        
     }
 }

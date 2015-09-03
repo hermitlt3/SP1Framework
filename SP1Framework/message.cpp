@@ -10,21 +10,21 @@ void update_comments(int i)
 	{
 	case 0: str = "Remember the times...";
 		break;
-	case 1: str = "... On the swing? ";
+	case 1: str = "... On the swing?";
 		break;
-	case 2: str = "It was fun... wasn't it? ";
+	case 2: str = "It was fun... wasn't it?";
 		break;
 	case 3: str = "We were only kids... so young... and you already killed someone.";
 		break;
 	case 4: str = "Do you remember? That someone...";
 		break;
-	case 5: str = "was me... ";
+	case 5: str = "was me...";
 		break;
-	case 6: str = "How long has it been since u killed... me?";
+	case 6: str = "How long has it been since you killed... me?";
 		break;
 	case 7: str = "The guilt must have been haunting you...";
 		break;
-	case 8: str = "It's okay... ";
+	case 8: str = "It's okay...";
 		break;
 	case 9: str = "I'm not angry...";
 		break;

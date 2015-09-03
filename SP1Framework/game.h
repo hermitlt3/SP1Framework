@@ -29,7 +29,6 @@ enum EKEYS
 enum EGAMESTATES
 {
     S_MENU, // i did this
-    S_SPLASHSCREEN,
     S_GAME,
 	S_RELOAD,
 	S_PAUSE,
