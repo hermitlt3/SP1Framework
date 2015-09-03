@@ -6,7 +6,7 @@ ifstream endgame;
 string endofend;
 extern double TimeKeep;
 extern double g_dDeltaTime;
-const int EndH = 14;
+const int EndH = 15;
 const int EndW = 79;
 char END[EndH][EndW];
 void EndScreenUpdate()
