@@ -146,6 +146,8 @@ void update(double dt)
 			break;
 		case S_LEVELUP: MessageUpdate();
 			break;
+		//case S_ENDSCREEN: EndScreen();
+			//break;
     } 
 }
 //--------------------------------------------------------------
@@ -247,7 +249,7 @@ void moveCharacter()
     if (bSomethingHappened)
     {
         // set the bounce time to some time in the future to prevent accidental triggers
-        g_dBounceTime = g_dElapsedTime + 0.125; // 125ms should be enough
+        g_dBounceTime = g_dElapsedTime + 0.000; // 125ms should be enough
     }
 }
 

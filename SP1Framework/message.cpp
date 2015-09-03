@@ -45,7 +45,7 @@ void MessageUpdate()
 	}
     if(mapLevelno == 12)
     {
-        g_eGameState = S_ENDSCREEN;
+       g_eGameState = S_ENDSCREEN;
     }
 	if(mapLevelno == 13)
 	{

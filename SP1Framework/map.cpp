@@ -9,6 +9,7 @@ int MapWidth;
  int numV = 0;
  int numK = 0;
  int numD = 0;
+ double TimeKeep;
  bool Reverse_H[50];
  bool Reverse_V[50];
  bool UnlockedD[10];
@@ -42,9 +43,7 @@ int MapWidth;
 	 case 10: catridge.open("level10.txt"); MapHeight = 24; MapWidth = 84;
 		 break;
 	 case 11: catridge.open("finallevel.txt"); MapHeight = 7; MapWidth = 73;
-		 break;
-	 case 12: catridge.open("EndGameScreen.txt"); MapHeight=;MapWidth=;
-		 break;
+		 break; 
 	 }
  }
 

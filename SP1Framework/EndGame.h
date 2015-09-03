@@ -6,6 +6,9 @@
 #include <string>
 #include <fstream>
 #include "game.h"
+#include "enemy.h"
+#include "Framework\timer.h"
+#include <sstream>
 
 using std::ifstream;
 using std::string;

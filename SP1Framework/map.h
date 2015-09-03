@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _MAP_H_
 #define _MAP_H_
 
@@ -19,6 +20,7 @@ extern int mapLevelno;
 extern char MAP_LEVEL[50][150];
 extern SGameChar g_sChar;
 extern EGAMESTATES g_eGameState;
+
 
 /*extern int XenemyX[10];
 extern int XenemyY[10];
