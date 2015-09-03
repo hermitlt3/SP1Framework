@@ -312,7 +312,7 @@ void renderFramerate()
     ss << g_dElapsedTime << "secs have passed";
     c.X = 0;
     c.Y = 0;
-    g_Console.writeToBuffer(c, ss.str(), 0x59);
+    g_Console.writeToBuffer(c, ss.str(), 0x0F);
 }
 void renderToScreen()
 {
