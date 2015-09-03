@@ -12,7 +12,9 @@ char END[EndH][EndW];
 void EndScreenUpdate()
 {
 	if(g_abKeyPressed[K_RETURN])
-		g_eGameState = S_GAMEEND;
+		//g_eGameState = S_GAMEEND;
+        g_bQuitGame = true;
+
 }
 
 void EndScreen()
@@ -45,7 +47,7 @@ void EndScreen()
 	std::ostringstream endy;
 	std::ostringstream endz;
 	endy.str("");
-	endy << "The time you took to escape was:" <<g_dElapsedTime;
+	endy << "The time you took to escape was:" <<g_dElapsedTime << " seconds";
 		g_Console.writeToBuffer(30, 19, endy.str(), 0x0B);
 	endz.str("");
 	endz << "Press ENTER to continue.";
