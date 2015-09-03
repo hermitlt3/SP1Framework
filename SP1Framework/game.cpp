@@ -177,8 +177,6 @@ void render()
 			break;
         case S_ENDSCREEN: EndScreen();
             break;
-	    case S_GAMEEND: ScoreDetect();
-			break;
     }
     renderToScreen();   // dump the contents of the buffer to the screen, one frame worth of game
 }

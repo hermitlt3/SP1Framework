@@ -49,6 +49,6 @@ void EndScreen()
 	endy << "The time you took to escape was:" <<g_dElapsedTime << " seconds";
 		g_Console.writeToBuffer(30, 19, endy.str(), 0x0B);
 	endz.str("");
-	endz << "Press ENTER to continue.";
+	endz << "Press ENTER to exit game.";
 	    g_Console.writeToBuffer(40, 21, endz.str(), 0x0B);
 }

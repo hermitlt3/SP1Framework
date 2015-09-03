@@ -94,7 +94,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_menu.cpp" />
     <ClCompile Include="pause.cpp" />
-    <ClCompile Include="Score.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="detectors.h" />
@@ -111,7 +110,6 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="main_menu.h" />
     <ClInclude Include="pause.h" />
-    <ClInclude Include="Score.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
