@@ -43,8 +43,8 @@ int MapWidth;
 		 break;
 	 case 11: catridge.open("finallevel.txt"); MapHeight = 7; MapWidth = 73;
 		 break;
-     case 12: EndScreen();
-         break;
+	 case 12: catridge.open("EndGameScreen.txt"); MapHeight=;MapWidth=;
+		 break;
 	 }
  }
 
