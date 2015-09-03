@@ -151,8 +151,6 @@ void update(double dt)
 			break;
 		case S_ENDSCREEN: EndScreenUpdate();
 			break;
-		/*case S_GAMEEND: ScoreDetect();
-			break;*/
     } 
 }
 //--------------------------------------------------------------

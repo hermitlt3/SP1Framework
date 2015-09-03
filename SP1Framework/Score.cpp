@@ -1,8 +1,10 @@
 #include "Score.h"
+#include <ios>
 
+using std::ios_base;
 string ScoreTime;
 bool ScoreStart;
-bool hi = false;
+bool printer = true;
 std::stringstream Score;
 void ScoreDetect()
 {		
@@ -13,19 +15,17 @@ void ScoreDetect()
 
 void ScorePrint()
 {
-	int count=0;
-	ofstream ScoreFile;
-	ScoreFile.open("HighScores.txt");
-	for(int e=0;e<=count;e++)
+	if(printer==true)
 	{
-		ScoreFile <<"\n";
+		ofstream ScoreFile;
+		ScoreFile.open("HighScores.txt",ios_base::app);
+			ScoreFile <<"\n";
+			ScoreFile <<"Name ";
+			for(int a=0;a<=5;a++)
+			{		
+				ScoreFile << ScoreTime[a];
+			}
+		ScoreFile.close();
+		printer=false;
 	}
-	ScoreFile <<"Name ";
-	for(int a=0;a<=5;a++)
-	{		
-		ScoreFile << ScoreTime[a];
-	}
-	ScoreFile <<"\n";
-	ScoreFile.close();
-	count+=1;
 }

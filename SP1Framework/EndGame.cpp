@@ -12,9 +12,7 @@ char END[EndH][EndW];
 void EndScreenUpdate()
 {
 	if(g_abKeyPressed[K_RETURN])
-		//g_eGameState = S_GAMEEND;
-        g_bQuitGame = true;
-
+		g_eGameState = S_GAMEEND;
 }
 
 void EndScreen()
